@@ -1,0 +1,12 @@
+extends layouts/main
+include mixins/contentBlock
+
+block content
+    h1 나는 콘텐츠
+    each item in contents
+        +contentBlock({
+            idx: item.idx,
+            creator: item.creator,
+            content: item.fileUrl,
+            date: item.regdate
+        })

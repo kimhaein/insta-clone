@@ -1,2 +1,2 @@
-# insta-clone
-인스타그램 클론 코딩
+npm i
+npm run dev:server
