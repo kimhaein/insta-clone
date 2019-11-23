@@ -1,17 +1,11 @@
-import routes from '../routes'
-import content from '../models/contentModel'
-export default {
-    home : async function(req, res) {
-        content.getConnection(function(conn) {
-            conn.query('select * from content')
-                .then((results) => {
-                    conn.end()
-                    res.render("home", {pageTitle: "Home", contents: results})
-                })
-                .catch(err => {
-                    console.log(err)
-                    conn.end()
-                })
-        })
+import contentModel from '../models/contentModel'
+
+export const home = async (req, res) => {
+    try {
+        const contents = await contentModel.home()
+        res.render("home", {pageTitle: "Home", contents})
+    } catch(err) {
+        console.log(err)
+        res.render("home", {pageTitle: "Home", contents: []})
     }
 }

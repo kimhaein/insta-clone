@@ -1,7 +1,8 @@
-import mariadb from 'mariadb'
-import env from 'dotenv'
+import mysql2 from 'mysql2'
+import env  from 'dotenv'
+env.config()
 
-const pool = mariadb.createPool({
+const dbConnect = mysql2.createPool({
     host        : process.env.DBhost,
     port        : process.env.DBport,
     user        : process.env.DBuser,
@@ -9,4 +10,6 @@ const pool = mariadb.createPool({
     database    : process.env.database,
     connectionLimit : 5
 })
-export default pool
+export default {
+    dbConnect
+}
