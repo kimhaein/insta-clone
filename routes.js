@@ -22,5 +22,5 @@ export default {
             return ERR
         }
     },
-    USER_EDIT   : '/edit',
+    USER_EDIT   : '/:id/edit',
 }

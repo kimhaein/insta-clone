@@ -1,5 +1,16 @@
 mixin contentBlock(content = {})
-    h4 #{content.idx}
-    h4 #{content.creator}
-    h4 #{content.content}
-    h4 #{content.regdate}
+    .contentsBox
+        .contentsHeader
+            .avatar #{`avatar`}
+            span.creator #{content.creator} 
+        .contentsBody 
+            .img #{`사진`}
+            .iconBox
+                .like
+                .comment
+                .carousel
+            .likeCnt #{`좋아요 0개`}
+            .contents #{content.creator} #{'내용 :'+content.content}
+        .contentsFooter 
+            div #{'댓글 0개 보기'}
+            div #{'댓글달기'}
