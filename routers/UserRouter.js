@@ -1,9 +1,9 @@
 import express from 'express'
 import routes from '../routes'
-import { users ,userEdit} from '../controllers/UserController'
+import {getUserEdit, getUsers} from '../controllers/UserController'
 const userRouter = express.Router()
 
-userRouter.get('/:id', users)
-userRouter.get(routes.USER_EDIT, userEdit)
+userRouter.get('/:id', getUsers)
+userRouter.get(routes.USER_EDIT, getUserEdit)
 
 export default userRouter

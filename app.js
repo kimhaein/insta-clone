@@ -4,6 +4,8 @@ import helmet from 'helmet'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-Parser'
 
+import { localsMiddleware } from "./middlewares";
+
 import globalRouter from './routers/GlobalRouter'
 import userRouter   from './routers/UserRouter'
 import routes from './routes'
@@ -17,6 +19,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use(localsMiddleware);
 
 app.use(routes.HOME, globalRouter)
 app.use(routes.USERS, userRouter)

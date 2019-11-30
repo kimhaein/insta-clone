@@ -1,6 +1,6 @@
 import contentModel from '../models/contentModel'
 
-export const userEdit = async (req, res) => {
+export const getUserEdit = async (req, res) => {
     try {
         const contents = 'userEdit'
         res.render("userEdit", {pageTitle: "userEdit", contents})
@@ -10,7 +10,7 @@ export const userEdit = async (req, res) => {
     }
 }
 
-export const users = async (req, res) => {
+export const getUsers = async (req, res) => {
     try {
         const contents = `users -${req.params.id}`
         res.render("users", {pageTitle: "Users", contents})

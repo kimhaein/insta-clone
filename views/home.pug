@@ -3,6 +3,11 @@ include mixins/contentBlock
 
 block content
     h1 나는 콘텐츠
+    div 
+    a(href='/') 홈
+    a(href='/login') 로그인
+    a(href='/users/1') user
+    a(href='/users/1/edit') userEdit
     each item in contents
         +contentBlock({
             idx: item.idx,
