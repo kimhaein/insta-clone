@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  flex: 1;
+  height: 60px;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(180, 180, 180, 0.4);
+  div {
+    align-self: center;
+  }
+  .headerLeft {
+    width: 20%;
+  }
+  .logo {
+    flex: 1;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Pacifico', cursive;
+  }
+  .headerRight {
+    width: 20%;
+    text-align: right;
+  }
+}
