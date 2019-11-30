@@ -1,6 +1,7 @@
 import contentModel from '../models/contentModel'
+import routes from '../routes'
 
-export const home = async (req, res) => {
+export const getHome = async (req, res) => {
     try {
         const contents = await contentModel.home()
         res.render("home", {pageTitle: "Home", contents})
@@ -10,7 +11,7 @@ export const home = async (req, res) => {
     }
 }
 
-export const login = async (req, res) => {
+export const getLogin = async (req, res) => {
     try {
         const contents = '로그인'
         res.render("login", {pageTitle: "Login", contents})
@@ -20,7 +21,7 @@ export const login = async (req, res) => {
     }
 }
 
-export const logout = async (req, res) => {
+export const getLogout = async (req, res) => {
     try {
         const contents = '로그아웃'
         res.render("logout", {pageTitle: "Logout", contents})
@@ -30,3 +31,12 @@ export const logout = async (req, res) => {
     }
 }
 
+export const getJoin = async(req, res) => {
+    try {
+        const contents = 'join'
+        res.render("join", {pageTitle: "join", contents})
+    } catch(err) {
+        console.log(err)
+        res.render("home")
+    }
+ }

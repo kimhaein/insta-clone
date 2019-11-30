@@ -2,6 +2,7 @@ export default {
     // global
     HOME    : '/',
     LOGIN   : '/login',
+    JOIN    : "/join",
     LOGOUT  : '/logout',
     SEARCH  : '/search',
     ERR     : '/error',
