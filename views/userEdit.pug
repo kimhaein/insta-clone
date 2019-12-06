@@ -3,3 +3,8 @@ include mixins/contentBlock
 
 block content
     h1 나는 유저 정보 수정
+    .form
+    form(action=`/users/${contents.idx}/edit`, method='post')
+        input(type="file", id="profile_img", name="profile_img", accept="image/*")
+        input(type='text', name='nickname', placeholder='nickname', value=contents.nickname required=true)
+        input(type='submit', value='정보수정')

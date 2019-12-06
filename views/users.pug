@@ -2,4 +2,6 @@ extends layouts/main
 include mixins/contentBlock
 
 block content
-    h1 #{contents}
+    a(href=`/users/${contents.idx}/edit`) #{contents.nickname}님 정보수정
+    h1 #{contents.nickname}
+    h1 #{contents.email}
