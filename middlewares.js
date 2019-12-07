@@ -1,5 +1,8 @@
 
+import multer from "multer";
 import routes from "./routes";
+
+const multerAvatar = multer({ dest: "uploads/avatars/" });
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "instagram Clone";
@@ -23,3 +26,5 @@ export const onlyPrivate = (req, res, next) => {
       res.redirect(routes.home);
     }
 };
+
+export const uploadAvatar = multerAvatar.single("avatar");

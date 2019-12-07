@@ -1,10 +1,10 @@
 import dbConfig from './dbConfig'
 
 export default {
-    insertUser(data) {
+    insertUser(nickname, email, password, profile_img) {
         const sql = [
         `INSERT INTO users (email, password, nickname, profile_img)`,
-        `VALUES ('${data.email}', '${data.password}', '${data.nickname}', '${data.profile_img}')`
+        `VALUES ('${email}', '${password}', '${nickname}', '${profile_img}')`
         ]
         return dbConfig.dbConnect
             .promise()

@@ -44,11 +44,15 @@ export const getJoin = async(req, res) => {
  }
 
  export const postJoin = async(req, res) => {
+        const {
+            body: { nickname, email, password },
+            file
+        } = req
         const data = req.body
-
+        console.log(req.file)
         // 비밀번호 해시화 
-        data.password = crypto.createHash('sha512').update(`${data.email}@${data.password}`).digest('base64');
-        usersModel.insertUser(data)
+        const hashPassword = crypto.createHash('sha512').update(`${email}@${password}`).digest('base64');
+        usersModel.insertUser(nickname, email, hashPassword, file.path)
         .then((result) => {
             // 회원가입 완료시 -> 로그인
             res.redirect(routes.LOGIN);
