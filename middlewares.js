@@ -27,4 +27,4 @@ export const onlyPrivate = (req, res, next) => {
     }
 };
 
-export const uploadAvatar = multerAvatar.single("avatar");
+export const uploadAvatar = multerAvatar.single("profile_img");
