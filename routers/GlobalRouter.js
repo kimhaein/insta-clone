@@ -2,7 +2,7 @@ import express from 'express'
 import routes from '../routes'
 import passport from 'passport'
 import { getHome, getLogin,postLogin, getJoin,postJoin, getLogout } from '../controllers/MainController'
-import { isAuth,onlyPublic, onlyPrivate, uploadAvatar,passportMiddleware} from "../middlewares";
+import { onlyPublic, onlyPrivate, uploadAvatar,passportMiddleware} from "../middlewares";
 
 const globalRouter = express.Router()
 

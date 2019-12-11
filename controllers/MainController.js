@@ -10,7 +10,6 @@ export const getHome = async (req, res) => {
         res.render("home", {
             pageTitle: "Home", 
             contents,
-            isLogin:req.isAuthenticated()
         })
     } catch(err) {
         console.log(err)
@@ -29,13 +28,8 @@ export const getLogin = async (req, res) => {
 }
 
 export const getLogout = async (req, res) => {
-    try {
-        const contents = '로그아웃'
-        res.render("logout", {pageTitle: "Logout", contents})
-    } catch(err) {
-        console.log(err)
-        res.render("logout", {pageTitle: "Logout", contents: []})
-    }
+    req.logout();
+    res.redirect('/');
 }
 
 export const getJoin = async(req, res) => {
