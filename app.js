@@ -8,7 +8,7 @@ import bodyParser from 'body-parser'
 
 import { localsMiddleware, passportMiddleware} from "./middlewares";
 
-import globalRouter from './routers/GlobalRouter'
+import mainRouter from './routers/MainRouter'
 import userRouter   from './routers/UserRouter'
 import routes from './routes'
 
@@ -31,7 +31,7 @@ app.use(morgan("dev"));
 // 미들웨어
 app.use(localsMiddleware,passportMiddleware);
 // 라우터
-app.use(routes.HOME,globalRouter)
+app.use(routes.HOME,mainRouter)
 app.use(routes.USERS, userRouter)
 
 export default app

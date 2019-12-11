@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 import contentModel from '../models/contentModel'
 import usersModel from '../models/usersModel'
-import globalModel from '../models/globalModel'
+import mainModel from '../models/mainModel'
 import routes from '../routes'
 
 export const getHome = async (req, res) => {

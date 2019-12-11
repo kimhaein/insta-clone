@@ -4,21 +4,21 @@ import passport from 'passport'
 import { getHome, getLogin,postLogin, getJoin,postJoin, getLogout } from '../controllers/MainController'
 import { onlyPublic, onlyPrivate, uploadAvatar,passportMiddleware} from "../middlewares";
 
-const globalRouter = express.Router()
+const mainRouter = express.Router()
 
-globalRouter.get(routes.HOME, getHome)
+mainRouter.get(routes.HOME, getHome)
 // 로그인
-globalRouter.get(routes.LOGIN,getLogin)
-globalRouter.post(routes.LOGIN, passport.authenticate('local',{
+mainRouter.get(routes.LOGIN,getLogin)
+mainRouter.post(routes.LOGIN, passport.authenticate('local',{
   successRedirect: '/',
   failureRedirect: '/login',
   failureFlash: true 
 }))
 // 로그아웃
-globalRouter.get(routes.LOGOUT, onlyPrivate, getLogout)
+mainRouter.get(routes.LOGOUT, onlyPrivate, getLogout)
 // 회원가입
-globalRouter.get(routes.JOIN, getJoin)
-globalRouter.post(routes.JOIN, uploadAvatar, postJoin)
+mainRouter.get(routes.JOIN, getJoin)
+mainRouter.post(routes.JOIN, uploadAvatar, postJoin)
 
 
-export default globalRouter
+export default mainRouter

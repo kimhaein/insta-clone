@@ -5,7 +5,7 @@ import LocalStrategy from 'passport-local'
 import crypto from 'crypto'
 import routes from "./routes";
 
-import globalModel from './models/globalModel'
+import mainModel from './models/mainModel'
 
 const multerAvatar = multer({ dest: "uploads/avatars/" });
 
@@ -58,7 +58,7 @@ export const passportMiddleware = (req, res, next) => {
   (email, password, done) =>{
     const hashPassword = crypto.createHash('sha512').update(`${email}@${password}`).digest('base64');
 
-    globalModel.login(email)
+    mainModel.login(email)
     .then(([row]) => {
       const { idx,email,nickname,password } = row[0]
       // 비밀번호 확인
