@@ -10,6 +10,7 @@
 
 1. npm i
 2. npm run dev:server
+3. npm run dev:assets
 
 # Project Stack
 

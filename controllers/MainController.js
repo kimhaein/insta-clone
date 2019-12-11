@@ -1,12 +1,17 @@
 import crypto from 'crypto'
 import contentModel from '../models/contentModel'
 import usersModel from '../models/usersModel'
+import globalModel from '../models/globalModel'
 import routes from '../routes'
 
 export const getHome = async (req, res) => {
     try {
         const contents = await contentModel.home()
-        res.render("home", {pageTitle: "Home", contents})
+        res.render("home", {
+            pageTitle: "Home", 
+            contents,
+            isLogin:req.isAuthenticated()
+        })
     } catch(err) {
         console.log(err)
         res.render("home", {pageTitle: "Home", contents: []})
@@ -18,7 +23,7 @@ export const getLogin = async (req, res) => {
         const contents = '로그인'
         res.render("login", {pageTitle: "Login", contents})
     } catch(err) {
-        console.log(err)
+        console.log('getLogin',req)
         res.render("login", {pageTitle: "Login", contents: []})
     }
 }

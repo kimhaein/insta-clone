@@ -5,21 +5,21 @@ export default {
         const sql = [
         `INSERT INTO users (email, password, nickname, profile_img)`,
         `VALUES ('${email}', '${password}', '${nickname}', '${profile_img}')`
-        ]
+        ].join('')
         return dbConfig.dbConnect
             .promise()
-            .query(sql.join(''))
+            .query(sql)
     },
     selectUser(userId) {
-        const sql = [`SELECT * FROM users WHERE idx = ${userId}`]
+        const sql = `SELECT * FROM users WHERE idx = ${userId}`
         return dbConfig.dbConnect
             .promise()
-            .query(sql.join(''))
+            .query(sql)
     },
     updateUser(filed, userId){
-        const sql = [`UPDATE users SET ${filed} WHERE idx = ${userId}`]
+        const sql = `UPDATE users SET ${filed} WHERE idx = ${userId}`
         return dbConfig.dbConnect
             .promise()
-            .query(sql.join(''))
+            .query(sql)
     }
 }
