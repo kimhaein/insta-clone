@@ -3,6 +3,6 @@ include mixins/contentBlock
 
 block content
     if (locals.isLogin && contents.idx === locals.user.idx)
-        a(href=`/users/${contents.idx}/edit`) #{contents.nickname}님 정보수정
+        a(href=`/users/${contents.idx}/edit`) #{contents.nickname}님 정보수정 <i class="far fa-edit"></i>
     h1 #{contents.nickname}
     h1 #{contents.email}

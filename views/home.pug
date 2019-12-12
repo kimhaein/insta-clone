@@ -3,18 +3,6 @@ include mixins/contentBlock
 
 block content
     div 로그인 여부 : #{locals.isLogin}
-    h1 
-        a(href='/') 홈
-    if !locals.isLogin
-        h1
-            a(href='/login') 로그인
-        h1
-            a(href='/join') 회원가입
-    else
-        h1
-            a(href='/users/1') #{locals.user.nickname} 회원상세
-        h1
-            a(href='/logout') 로그아웃
     each item in contents
         +contentBlock({
             idx: item.idx,

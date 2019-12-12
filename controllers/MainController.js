@@ -4,6 +4,9 @@ import usersModel from '../models/usersModel'
 import mainModel from '../models/mainModel'
 import routes from '../routes'
 
+/**
+ * HOME
+ * */
 export const getHome = async (req, res) => {
     try {
         const contents = await contentModel.home()
@@ -17,6 +20,9 @@ export const getHome = async (req, res) => {
     }
 }
 
+/**
+ * LOGIN
+ * */
 export const getLogin = async (req, res) => {
     try {
         const contents = '로그인'
@@ -27,11 +33,17 @@ export const getLogin = async (req, res) => {
     }
 }
 
+/**
+ * LOGOUT
+ * */
 export const getLogout = async (req, res) => {
     req.logout();
     res.redirect('/');
 }
 
+/**
+ * JOIN
+ * */
 export const getJoin = async(req, res) => {
     try {
         const contents = '회원가입'
@@ -43,23 +55,24 @@ export const getJoin = async(req, res) => {
  }
 
  export const postJoin = async(req, res) => {
-        const {
-            body: { nickname, email, password },
-            file
-        } = req
-        const data = req.body
-        console.log(req.file)
-        // 비밀번호 해시화 
-        const hashPassword = crypto.createHash('sha512').update(`${email}@${password}`).digest('base64');
-        usersModel.insertUser(nickname, email, hashPassword, file.path)
-        .then((result) => {
-            // 회원가입 완료시 -> 로그인
-            res.redirect(routes.LOGIN);
-        })
-        .catch((e) => {
-            // 회원가입 실시패 -> 홈
-            res.redirect(routes.HOME);
-        })
-
+    const {
+        body: { nickname, email, password },
+        file
+    } = req
     
+    // 비밀번호 해시화 
+    const hashPassword = crypto.createHash('sha512').update(`${email}@${password}`).digest('base64');
+    usersModel.insertUser(nickname, email, hashPassword, file.path)
+    .then((result) => {
+        // 회원가입 완료시 -> 로그인
+        res.redirect(routes.LOGIN);
+    })
+    .catch((e) => {
+        // 회원가입 실시패 -> 홈
+        res.redirect(routes.HOME);
+    })
  }
+
+ /**
+ * 
+ * */

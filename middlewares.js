@@ -65,10 +65,9 @@ export const passportMiddleware = (req, res, next) => {
       if(hashPassword === password ){
         console.log('비밀번호 확인')
         return done(null, {idx,email,nickname});
-      }else {
-        console.log('비밀번호 틀림')
-        return done(null, false, { message: '비밀번호가 틀렸습니다' })
-      }
+      } 
+      return done(null, false, { message: '비밀번호가 틀렸습니다' })
+
   })
   .catch((e) => {
       console.log(e)

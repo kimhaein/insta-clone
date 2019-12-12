@@ -2,6 +2,9 @@ import contentModel from '../models/contentModel'
 import usersModel from '../models/usersModel'
 import routes from '../routes'
 
+/**
+ * UserEdit
+ * */
 export const getUserEdit = async (req, res) => {
     const { id } = req.params
     usersModel.selectUser(id)
@@ -30,8 +33,10 @@ export const postUserEdit = async (req, res) => {
     })
 }
 
-
-export const getUsers = async (req, res) => {
+/**
+ * User
+ * */
+export const getUser = async (req, res) => {
     const { id } = req.params
     usersModel.selectUser(id)
     .then(([row])=>{

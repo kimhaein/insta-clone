@@ -1,5 +1,17 @@
 .header
-  .headerLeft 왼쪽
+  .headerLeft 
+    a(href='/') <i class="fab fa-instagram logo"></i> Instagram
   .hederMain 
-    a(href='/') Instagram
-  .headerRight 오른쪽
+  ul.headerRight 
+    if !locals.isLogin
+      li
+        a(href='/login') LOGIN
+      li
+        a(href='/join') JOIN
+    else
+      li
+        a(href=`/users/${locals.user.idx}`) 
+          <i class="far fa-user headerIcon"></i>
+      li
+        a(href='/logout') 
+          <i class="fas fa-sign-out-alt headerIcon"></i>

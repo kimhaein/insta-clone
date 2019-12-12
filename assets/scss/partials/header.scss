@@ -8,20 +8,37 @@
   box-sizing: border-box;
   background-color: #ffffff;
   border-bottom: 1px solid rgba(180, 180, 180, 0.4);
-  div {
+  > div {
     align-self: center;
   }
   .headerLeft {
-    width: 20%;
+    flex-direction: 'row';
+    font-size: 25px;
+    font-family: 'Pacifico', cursive;
+    .logo {
+      padding-right: 15px;
+      margin-right: 10px;
+      border-right: 1px solid #000;
+      font-size: 30px;
+    }
   }
   .hederMain {
     flex: 1;
-    text-align: center;
-    font-size: 30px;
-    font-family: 'Pacifico', cursive;
   }
   .headerRight {
-    width: 20%;
+    display: flex;
     text-align: right;
+    overflow: hidden;
+    li {
+      align-self: center;
+      flex-direction: 'row';
+      margin-left: 10px;
+      a {
+        padding: 5px;
+      }
+    }
+    .headerIcon {
+      font-size: 25px;
+    }
   }
 }
