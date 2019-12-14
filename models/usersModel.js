@@ -11,7 +11,7 @@ export default {
             .query(sql)
     },
     selectUser(userId) {
-        const sql = `SELECT * FROM users WHERE idx = ${userId}`
+        const sql = `SELECT * FROM users WHERE idx = ${userId} AND is_deleted = 'N'`
         return dbConfig.dbConnect
             .promise()
             .query(sql)
@@ -21,5 +21,12 @@ export default {
         return dbConfig.dbConnect
             .promise()
             .query(sql)
+    },
+    selectFindUserByEmail(email){
+        const sql = `SELECT * FROM users WHERE email = '${email}' AND is_deleted = 'N'`
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+
     }
 }

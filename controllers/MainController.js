@@ -59,18 +59,29 @@ export const getJoin = async(req, res) => {
         body: { nickname, email, password },
         file
     } = req
+
+    usersModel.selectFindUserByEmail(email)
+    .then(([row])=>{
+        if(row.length > 0){
+            // 이미 존재하는 이메일
+        }else {
+            // 비밀번호 해시화 
+            const hashPassword = crypto.createHash('sha512').update(`${email}@${password}`).digest('base64');
+            usersModel.insertUser(nickname, email, hashPassword, file.path)
+            .then((result) => {
+                // 회원가입 완료시 -> 로그인
+                res.redirect(routes.LOGIN);
+            })
+            .catch((e) => {
+                // 회원가입 실시패 -> 홈
+                res.redirect(routes.JOIN);
+            })
+        }
+    }).catch((e)=>{
+        console.log(e)
+    })
     
-    // 비밀번호 해시화 
-    const hashPassword = crypto.createHash('sha512').update(`${email}@${password}`).digest('base64');
-    usersModel.insertUser(nickname, email, hashPassword, file.path)
-    .then((result) => {
-        // 회원가입 완료시 -> 로그인
-        res.redirect(routes.LOGIN);
-    })
-    .catch((e) => {
-        // 회원가입 실시패 -> 홈
-        res.redirect(routes.HOME);
-    })
+
  }
 
  /**

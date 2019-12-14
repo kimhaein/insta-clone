@@ -16,6 +16,7 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.isLogin = req.isAuthenticated()
     //로그인 유저 정보
     if(req.isAuthenticated()){
+      console.log(req.session.passport)
       res.locals.user = req.session.passport.user
     }
     next();
@@ -41,7 +42,6 @@ export const uploadAvatar = multerAvatar.single("profile_img");
 
 export const passportMiddleware = (req, res, next) => {
   const Strategy = LocalStrategy.Strategy
-  const authData = req.body
 
   passport.serializeUser(function (user, done) {
     done(null, user);
@@ -54,24 +54,29 @@ export const passportMiddleware = (req, res, next) => {
   passport.use(new Strategy({
     usernameField: 'email',
     passwordField: 'password'
-  },
-  (email, password, done) =>{
+  },(email, password, done) =>{
     const hashPassword = crypto.createHash('sha512').update(`${email}@${password}`).digest('base64');
-
     mainModel.login(email)
     .then(([row]) => {
-      const { idx,email,nickname,password } = row[0]
       // 비밀번호 확인
-      if(hashPassword === password ){
-        console.log('비밀번호 확인')
-        return done(null, {idx,email,nickname});
-      } 
-      return done(null, false, { message: '비밀번호가 틀렸습니다' })
-
-  })
-  .catch((e) => {
-      console.log(e)
-  })
+      if(row.length > 0){
+        console.log('기존유저')
+        const { idx,email,nickname,password } = row[0]
+        if(hashPassword === password ){
+          console.log('로그인 성공')
+          return done(null, {idx,email,nickname});
+        }else {
+          console.log('비밀번호 틀림')
+          return done(null, false)
+        }
+      }else {
+        console.log('비유저')
+        return done(null, false)
+      }
+    })
+    .catch((e) => {
+      return done(e);
+    })
   }))
   next();
 }
