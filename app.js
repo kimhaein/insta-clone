@@ -19,7 +19,7 @@ app.use(helmet())
 app.use("/static", express.static("static"));
 app.use("/uploads", express.static("uploads"));
 
-app.use(session({ secret: '!@!@123!@', resave: true, saveUninitialized: false }));
+app.use(session({ secret: process.env.SECRET , resave: true, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
