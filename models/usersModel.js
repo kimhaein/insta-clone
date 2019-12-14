@@ -4,7 +4,7 @@ export default {
     insertUser(nickname, email, password, profile_img) {
         const sql = [
         `INSERT INTO users (email, password, nickname, profile_img)`,
-        `VALUES ('${email}', '${password}', '${nickname}', '${profile_img}')`
+        `VALUES ('${email}', '${password}', '${nickname}', '/${profile_img}')`
         ].join('')
         return dbConfig.dbConnect
             .promise()

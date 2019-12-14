@@ -54,7 +54,6 @@ export const getJoin = async(req, res) => {
         body: { nickname, email, password },
         file
     } = req
-
     usersModel.selectFindUserByEmail(email)
     .then(([row])=>{
         if(row.length > 0){
