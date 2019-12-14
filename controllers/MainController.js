@@ -45,7 +45,7 @@ export const getJoin = async(req, res) => {
     const contents = '회원가입'
     res.render("join", {
         pageTitle: "join", 
-        contents
+        joinMessage:req.flash('joinMessage')[0]
     })
  }
 
@@ -56,11 +56,10 @@ export const getJoin = async(req, res) => {
     } = req
     usersModel.selectFindUserByEmail(email)
     .then(([row])=>{
-        if(row.length > 0){
+        if(row[0].total > 0){
             req.flash('joinMessage','이미 존재하는 아이디 입니다.')
-            // 이미 존재하는 이메일
-
-        }else {
+            res.redirect(routes.JOIN);
+        } else {
             // 비밀번호 해시화 
             const hashPassword = crypto.createHash('sha512').update(`${email}@${password}`).digest('base64');
             usersModel.insertUser(nickname, email, hashPassword, file.path)

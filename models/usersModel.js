@@ -23,7 +23,7 @@ export default {
             .query(sql)
     },
     selectFindUserByEmail(email){
-        const sql = `SELECT * FROM users WHERE email = '${email}' AND is_deleted = 'N'`
+        const sql = `SELECT COUNT(*) AS total FROM users WHERE email = '${email}' AND is_deleted = 'N'`
         return dbConfig.dbConnect
             .promise()
             .query(sql)
