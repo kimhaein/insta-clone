@@ -26,7 +26,7 @@ export const getHome = async (req, res) => {
 export const getLogin = async (req, res) => {
     res.render("login", {
         pageTitle: "Login", 
-        loginErrMsg:req.flash('message')[0]
+        loginErrMsg:req.flash('loginMessage')[0]
     })
 }
 
@@ -58,7 +58,9 @@ export const getJoin = async(req, res) => {
     usersModel.selectFindUserByEmail(email)
     .then(([row])=>{
         if(row.length > 0){
+            req.flash('ㅓMessage','이미 존재하는 아이디 입니다.')
             // 이미 존재하는 이메일
+
         }else {
             // 비밀번호 해시화 
             const hashPassword = crypto.createHash('sha512').update(`${email}@${password}`).digest('base64');

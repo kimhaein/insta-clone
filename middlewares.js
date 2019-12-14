@@ -64,10 +64,10 @@ export const passportMiddleware = (req, res, next) => {
         if(hashPassword === password ){
           return done(null, {idx,email,nickname});
         }else {
-          return done(null, false, req.flash('message', '아이디 혹은 비밀번호를 확인해주세요'))
+          return done(null, false, req.flash('loginMessage', '아이디 혹은 비밀번호를 확인해주세요'))
         }
       }else {
-        return done(null, false, req.flash('message', '아이디 혹은 비밀번호를 확인해주세요'))
+        return done(null, false, req.flash('loginMessage', '아이디 혹은 비밀번호를 확인해주세요'))
       }
     })
     .catch((e) => {
