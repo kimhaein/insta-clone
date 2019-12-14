@@ -9,10 +9,11 @@ const mainRouter = express.Router()
 mainRouter.get(routes.HOME, getHome)
 // 로그인
 mainRouter.get(routes.LOGIN,getLogin)
-mainRouter.post(routes.LOGIN, passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-}))
+mainRouter.post(routes.LOGIN,  passport.authenticate('local', {
+  successRedirect: routes.HOME,
+  failureRedirect: routes.LOGIN,
+  failureFlash: true,
+}));
 // 로그아웃
 mainRouter.get(routes.LOGOUT, onlyPrivate, getLogout)
 // 회원가입

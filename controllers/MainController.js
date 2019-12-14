@@ -24,13 +24,10 @@ export const getHome = async (req, res) => {
  * LOGIN
  * */
 export const getLogin = async (req, res) => {
-    try {
-        const contents = '로그인'
-        res.render("login", {pageTitle: "Login", contents})
-    } catch(err) {
-        console.log('getLogin',req)
-        res.render("login", {pageTitle: "Login", contents: []})
-    }
+    res.render("login", {
+        pageTitle: "Login", 
+        loginErrMsg:req.flash('message')[0]
+    })
 }
 
 /**
@@ -45,13 +42,11 @@ export const getLogout = async (req, res) => {
  * JOIN
  * */
 export const getJoin = async(req, res) => {
-    try {
-        const contents = '회원가입'
-        res.render("join", {pageTitle: "join", contents})
-    } catch(err) {
-        console.log(err)
-        res.render("home")
-    }
+    const contents = '회원가입'
+    res.render("join", {
+        pageTitle: "join", 
+        contents
+    })
  }
 
  export const postJoin = async(req, res) => {

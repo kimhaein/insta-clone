@@ -3,6 +3,7 @@ import session from  'express-session'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import passport from 'passport'
+import flash from  'connect-flash'
 import cookieParser from 'cookie-Parser'
 import bodyParser from 'body-parser'
 
@@ -19,6 +20,7 @@ app.use(helmet())
 app.use("/static", express.static("static"));
 app.use("/uploads", express.static("uploads"));
 
+app.use(flash());
 app.use(session({ secret: '!@!@123!@', resave: true, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());

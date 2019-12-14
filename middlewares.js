@@ -14,9 +14,9 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.routes = routes;
     //로그인 여부
     res.locals.isLogin = req.isAuthenticated()
+
     //로그인 유저 정보
     if(req.isAuthenticated()){
-      console.log(req.session.passport)
       res.locals.user = req.session.passport.user
     }
     next();
@@ -47,8 +47,8 @@ export const passportMiddleware = (req, res, next) => {
     done(null, user);
   });
 
-  passport.deserializeUser(function (id, done) {
-      done(null, id);
+  passport.deserializeUser(function (user, done) {
+      done(null, user);
   });
 
   passport.use(new Strategy({
@@ -60,18 +60,14 @@ export const passportMiddleware = (req, res, next) => {
     .then(([row]) => {
       // 비밀번호 확인
       if(row.length > 0){
-        console.log('기존유저')
         const { idx,email,nickname,password } = row[0]
         if(hashPassword === password ){
-          console.log('로그인 성공')
           return done(null, {idx,email,nickname});
         }else {
-          console.log('비밀번호 틀림')
-          return done(null, false)
+          return done(null, false, req.flash('message', '아이디 혹은 비밀번호를 확인해주세요'))
         }
       }else {
-        console.log('비유저')
-        return done(null, false)
+        return done(null, false, req.flash('message', '아이디 혹은 비밀번호를 확인해주세요'))
       }
     })
     .catch((e) => {

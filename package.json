@@ -17,6 +17,7 @@
     "autoprefixer": "^9.7.2",
     "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
     "cross-env": "^6.0.3",
     "crypto": "^1.0.1",
