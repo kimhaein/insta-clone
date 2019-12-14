@@ -57,7 +57,7 @@ export const getJoin = async(req, res) => {
     usersModel.selectFindUserByEmail(email)
     .then(([row])=>{
         if(row.length > 0){
-            req.flash('ㅓMessage','이미 존재하는 아이디 입니다.')
+            req.flash('joinMessage','이미 존재하는 아이디 입니다.')
             // 이미 존재하는 이메일
 
         }else {
