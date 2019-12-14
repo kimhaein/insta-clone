@@ -4,5 +4,7 @@ include mixins/contentBlock
 block content
     if (locals.isLogin && contents.idx === locals.user.idx)
         a(href=`/users/${contents.idx}/edit`) #{contents.nickname}님 정보수정 <i class="far fa-edit"></i>
+        input(type='button' value='올리기' href=routes.UPLOAD)
+    img(src=contents.profile_img)
     h1 #{contents.nickname}
     h1 #{contents.email}
