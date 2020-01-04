@@ -2,17 +2,18 @@ extends layouts/main
 include mixins/contentBlock
 
 block content
-    h1 나는 로그인
-    form(action=routes.LOGIN, method='post')
-        input(
-            type='text'
-            name='email'
-            placeholder='이메일을 입력하세요'
-        )
-        input(
-            type='password'
-            name='password'
-            placeholder='비밀번호를 입력하세요'
-        )
-        input(type='submit', value='Join Now')
-    .errorMsg #{loginErrMsg}
+    .loginBox
+        h1 나는 로그인
+        form(action=routes.LOGIN, method='post')
+            input(
+                type='text'
+                name='email'
+                placeholder='이메일을 입력하세요'
+            )
+            input(
+                type='password'
+                name='password'
+                placeholder='비밀번호를 입력하세요'
+            )
+            button(type='submit') 로그인
+        .errorMsg #{loginErrMsg}

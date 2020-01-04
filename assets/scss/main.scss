@@ -148,15 +148,38 @@ table {
 
 body {
   font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
   background-color: #fff;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-main {
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding-top: 60px;
 }
 
 a {
   color: #000;
   text-decoration: none;
+}
+
+input {
+  border: none;
+  box-shadow: none;
+  outline-style: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+}
+button {
+  padding: 0;
+  border: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
 }
