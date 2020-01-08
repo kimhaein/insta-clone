@@ -5,8 +5,8 @@
   .contentsBox {
     display: flex;
     flex-direction: column;
-    width: 550px;
-    height: 550px;
+    width: 600px;
+    height: 600px;
     margin-bottom: 50px;
     border: 1px solid rgba(180, 180, 180, 0.3);
     border-radius: 5px;
@@ -26,6 +26,10 @@
     }
     .contentsBody {
       flex: 1;
+      padding: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
     .contentsFooter {
       height: 100px;
@@ -45,9 +49,12 @@
       .avatar {
         width: 60px;
         height: 60px;
-        border-radius: 30px;
-        background-color: red;
         margin-right: 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border: 1px solid rgba(180, 180, 180);
+        border-radius: 30px;
       }
       .userName {
         p {

@@ -60,9 +60,9 @@ export const passportMiddleware = (req, res, next) => {
     .then(([row]) => {
       // 비밀번호 확인
       if(row.length > 0){
-        const { idx,email,nickname,password } = row[0]
+        const { idx,email,nickname,password,profile_img } = row[0]
         if(hashPassword === password ){
-          return done(null, {idx,email,nickname});
+          return done(null, {idx,email,nickname,profile_img});
         }else {
           return done(null, false, req.flash('loginMessage', '아이디 혹은 비밀번호를 확인해주세요'))
         }
