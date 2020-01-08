@@ -2,11 +2,20 @@ extends layouts/main
 include mixins/contentBlock
 
 block content
-    div 로그인 여부 : #{locals.isLogin}
-    each item in contents
-        +contentBlock({
-            idx: item.idx,
-            creator: item.creator,
-            content: item.fileUrl,
-            date: item.regdate
-        })
+    .homeBox.mainWrap
+        div
+            each item in contents
+                +contentBlock({
+                    idx: item.idx,
+                    creator: item.creator,
+                    content: item.fileUrl,
+                    date: item.regdate
+                })
+        .userInfoBox
+            .userInfo 
+                .avatar
+                .userName 
+                    p 닉네임
+                    span 이름
+            .followerBox 팔로워 리스트
+                //- #{locals.isLogin}

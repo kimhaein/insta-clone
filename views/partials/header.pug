@@ -1,17 +1,20 @@
 .header
-  .headerLeft 
-    a(href='/') <i class="fab fa-instagram logo"></i> Instagram
-  .hederMain 
-  ul.headerRight 
-    if !locals.isLogin
-      li
-        a(href='/login') LOGIN
-      li
-        a(href='/join') JOIN
-    else
-      li
-        a(href=`/users/${locals.user.idx}`) 
-          <i class="far fa-user headerIcon"></i>
-      li
-        a(href='/logout') 
-          <i class="fas fa-sign-out-alt headerIcon"></i>
+  .mainWrap
+    .headerLeft 
+      a(href='/') 
+        i.fab.fa-instagram.logo
+        span Instagram
+    .hederMain 
+    ul.headerRight 
+      if !locals.isLogin
+        li
+          a(href='/login') LOGIN
+        li
+          a(href='/join') JOIN
+      else
+        li
+          a(href=`/users/${locals.user.idx}`) 
+            <i class="far fa-user headerIcon"></i>
+        li
+          a(href='/logout') 
+            <i class="fas fa-sign-out-alt headerIcon"></i>

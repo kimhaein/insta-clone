@@ -2,24 +2,29 @@
   position: fixed;
   left: 0;
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 60px;
   padding: 0 20px;
   box-sizing: border-box;
   background-color: #ffffff;
   border-bottom: 1px solid rgba(180, 180, 180, 0.4);
-  > div {
-    align-self: center;
-  }
-  .headerLeft {
+  .mainWrap {
     flex-direction: 'row';
-    font-size: 25px;
-    font-family: 'Pacifico', cursive;
-    .logo {
-      padding-right: 15px;
-      margin-right: 10px;
-      border-right: 1px solid #000;
-      font-size: 30px;
+    .headerLeft {
+      flex-direction: 'row';
+      font-size: 25px;
+      font-family: 'Pacifico', cursive;
+      .logo {
+        padding-right: 15px;
+        margin-right: 10px;
+        border-right: 1px solid #000;
+        font-size: 30px;
+      }
+      span {
+        font-size: 25px;
+      }
     }
   }
   .hederMain {

@@ -2,8 +2,9 @@ extends layouts/main
 include mixins/contentBlock
 
 block content
-    .loginBox
-        h1 나는 로그인
+    .centerBox.loginBox
+        h1 로그인
+        .errorMsg #{loginErrMsg}
         form(action=routes.LOGIN, method='post')
             input(
                 type='text'
@@ -16,4 +17,4 @@ block content
                 placeholder='비밀번호를 입력하세요'
             )
             button(type='submit') 로그인
-        .errorMsg #{loginErrMsg}
+        a(href='/join') 아직 회원이 아니신가요?
