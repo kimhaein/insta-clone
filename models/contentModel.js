@@ -9,5 +9,14 @@ export default {
             .then(([rows]) => {
                 return rows
             })
+    },
+    insertContent(content_img, creator, title, value) {
+        const sql = [
+        `INSERT INTO content (fileUrl, creator, title, value)`,
+        `VALUES ('/${content_img}', '${creator}', '${title}', '${value}')`
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
     }
 }

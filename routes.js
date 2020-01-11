@@ -6,13 +6,6 @@ export default {
     LOGOUT  : '/logout',
     SEARCH  : '/search',
     ERR     : '/error',
-    CONTENT : id => {
-        if(id) {
-            return `/content/${id}`
-        } else {
-            return ERR
-        }
-    },
 
     // users
     USERS       : '/users',
@@ -24,4 +17,31 @@ export default {
         }
     },
     USER_EDIT   : '/:id/edit',
+
+    // contents
+
+    CONTENTS          : "/contents",
+    CONTENTS_UPLOAD    : '/contents/upload',
+    UPLOAD            : '/upload',
+    contentDetail     : id => {
+        if (id) {
+          return `/contents/${id}`;
+        } else {
+          return ERR;
+        }
+    },
+    editContent       : id => {
+        if (id) {
+          return `/contents/${id}/edit`;
+        } else {
+          return ERR;
+        }
+    },
+    deleteContent     : id => {
+        if (id) {
+          return `/contents/${id}/delete`;
+        } else {
+          return ERR;
+        }
+    }
 }

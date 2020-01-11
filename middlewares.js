@@ -8,6 +8,7 @@ import routes from "./routes";
 import mainModel from './models/mainModel'
 
 const multerAvatar = multer({ dest: "uploads/avatars/" });
+const multerContnent = multer({ dest: "uploads/contents/" });
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "instagram Clone";
@@ -34,11 +35,12 @@ export const onlyPrivate = (req, res, next) => {
     if (req.isAuthenticated()) {
       next();
     } else {
-      res.redirect(routes.home);
+      res.redirect(routes.HOME);
     }
 };
 
 export const uploadAvatar = multerAvatar.single("profile_img");
+export const uploadContent = multerContnent.single("content_img");
 
 export const passportMiddleware = (req, res, next) => {
   const Strategy = LocalStrategy.Strategy

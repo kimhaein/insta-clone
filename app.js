@@ -11,6 +11,7 @@ import { localsMiddleware, passportMiddleware} from "./middlewares";
 
 import mainRouter from './routers/MainRouter'
 import userRouter   from './routers/UserRouter'
+import contenRouter from './routers/ContnentRouter'
 import routes from './routes'
 
 // 기본 셋팅 
@@ -31,9 +32,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // 미들웨어
-app.use(localsMiddleware,passportMiddleware);
+app.use(localsMiddleware,passportMiddleware)
+
 // 라우터
 app.use(routes.HOME,mainRouter)
 app.use(routes.USERS, userRouter)
+app.use(routes.CONTENTS, contenRouter)
 
 export default app
