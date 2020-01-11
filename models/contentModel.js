@@ -2,7 +2,7 @@ import dbConfig from './dbConfig'
 
 export default {
     home() {
-        const sql = 'select * from content'
+        const sql = 'select * from content order by idx desc'
         return dbConfig.dbConnect
             .promise()
             .query(sql)

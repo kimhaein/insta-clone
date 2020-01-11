@@ -1,4 +1,5 @@
 import contentModel from '../models/contentModel'
+import routes from '../routes'
 
 export const getUpload = async (req, res) => {
     try {
@@ -18,11 +19,11 @@ export const postUpload = async(req, res) => {
 
         contentModel.insertContent(file.path, nickName, title, value)
             .then((result) => {
-                // 회원가입 완료시 -> 로그인
-                //res.redirect(routes.LOGIN);
+                console.log(result)
+                res.redirect(routes.HOME);
             })
             .catch((e) => {
-                // 회원가입 실시패 -> 홈
-                //res.redirect(routes.JOIN);
+                console.log(e)
+                res.redirect(routes.UPLOAD);
             })
 }

@@ -3,13 +3,13 @@ mixin contentBlock(content = {})
         .contentsHeader
             .avatar #{`avatar`}
             span.creator #{content.creator} 
-        .contentsBody(style=`background-image:url("/uploads/avatars/3524bc29175af80b89afa5b95f48adb5")`)
+        .contentsBody(style=`background-image:url("${content.fileUrl}")`)
         .contentsFooter 
             .iconBox
                 .like
                 .comment
                 .carousel
             .likeCnt #{`좋아요 0개`}
-            .contents #{content.creator} #{'내용 :'+content.content}
+            .contents #{content.creator} #{'내용 :'+content.value}
             div #{'댓글 0개 보기'}
             div #{'댓글달기'}
