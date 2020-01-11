@@ -1,10 +1,20 @@
 extends layouts/main
-include mixins/contentBlock
+include mixins/userBlock
 
 block content
-    if (locals.isLogin && contents.idx === locals.user.idx)
-        a(href=`/users/${contents.idx}/edit`) #{contents.nickname}님 정보수정 <i class="far fa-edit"></i>
+    if (locals.isLogin && userInfo.idx === locals.user.idx)
+        input(type='button' value=`${userInfo.nickname}님 정보수정` onclick=`location.href='/users/${userInfo.idx}/edit'`)
         input(type='button' value='올리기' onclick=`location.href='${routes.CONTENTS_UPLOAD}'`)
-    img(src=contents.profile_img)
-    h1 #{contents.nickname}
-    h1 #{contents.email}
+    img(src=userInfo.profile_img)
+    h1 #{userInfo.nickname}
+    h1 #{userInfo.email}
+
+    div
+        each item in contents
+            +userBlock({
+                idx: item.idx,
+                creator: item.creator,
+                fileUrl: item.fileUrl,
+                value:  item.value,
+                date: item.regdate
+            })

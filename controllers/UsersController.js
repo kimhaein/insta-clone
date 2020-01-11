@@ -40,7 +40,11 @@ export const getUser = async (req, res) => {
     const { id } = req.params
     usersModel.selectUser(id)
     .then(([row])=>{
-        res.render("users", {pageTitle: "Users", contents:row[0]})
+        const userInfo = row[0]
+        const contents = contentModel.getUserContent(userInfo.email)
+            .then((result) => {
+                res.render("users", {pageTitle: "Users", contents: result , userInfo})
+            })
     }).catch((e)=>{
         console.log(e)
         res.render("users", {pageTitle: "Users", contents: []})

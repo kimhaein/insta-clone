@@ -15,11 +15,11 @@ export const postUpload = async(req, res) => {
             body: { title, value },
             file
         } = req
-        const nickName = res.locals.user.nickname
-
-        contentModel.insertContent(file.path, nickName, title, value)
+        const email = res.locals.user.email
+        const nickname = res.locals.user.nickname
+        
+        contentModel.insertContent(file.path, nickname, email, title, value)
             .then((result) => {
-                console.log(result)
                 res.redirect(routes.HOME);
             })
             .catch((e) => {
