@@ -2,7 +2,8 @@ extends layouts/main
 include mixins/contentBlock
 
 block content
-    .form
+    .centerBox.joinBox
+        h1 게시글 업로드
         form(action=routes.CONTENTS_UPLOAD, method='post', enctype="multipart/form-data")
             input(type="file", id="content_img", name="content_img", accept="image/*", required=true)
             input(type='text', name='title', placeholder='title', required=true)

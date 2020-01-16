@@ -23,20 +23,35 @@ export const localsMiddleware = (req, res, next) => {
     next();
 };
 
+// 비로그인 사용자만 접근 가능
 export const onlyPublic = (req, res, next) => {
     if (req.isAuthenticated()) {
-      res.redirect(routes.home);
+      res.redirect(routes.HOME);
     } else {
       next();
     }
 };
-  
+
+// 로그인 사용자만 접근 가능
+export const onlyLogin = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect(routes.HOME);
+  }
+};
+
+// 로그인한 당사자만 접근 가능
 export const onlyPrivate = (req, res, next) => {
-    if (req.isAuthenticated()) {
-      next();
-    } else {
-      res.redirect(routes.HOME);
-    }
+  const { id } = req.params
+  const { passport } = req.session
+  // console.log(req.session.passport.user)
+
+  if (req.isAuthenticated() && passport.user.idx === +id) {
+    next();
+  } else {
+    res.redirect(routes.HOME);
+  }
 };
 
 export const uploadAvatar = multerAvatar.single("profile_img");

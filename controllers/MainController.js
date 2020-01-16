@@ -10,7 +10,7 @@ import routes from '../routes'
 export const getHome = async (req, res) => {
     try {
         const contents = await contentModel.home()
-        console.log(contents)
+        // console.log(contents)
         res.render("home", {
             pageTitle: "Home", 
             contents,
