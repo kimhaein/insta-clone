@@ -12,6 +12,7 @@
   border-bottom: 1px solid rgba(180, 180, 180, 0.4);
   .mainWrap {
     flex-direction: row;
+    align-items: center;
     .headerLeft {
       font-size: 25px;
       font-family: 'Pacifico', cursive;
@@ -36,6 +37,11 @@
     li {
       align-self: center;
       margin-left: 10px;
+      .avatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 5px;
+      }
       a {
         padding: 5px;
       }

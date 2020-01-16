@@ -52,6 +52,10 @@ button {
     justify-content: space-between;
     height: 60px;
     border-bottom: 1px solid rgba(180, 180, 180, 0.3);
+    .avatar {
+      width: 40px;
+      height: 40px;
+    }
   }
   .contentsBody {
     flex: 1;
@@ -70,16 +74,6 @@ button {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  .avatar {
-    width: 60px;
-    height: 60px;
-    margin-right: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border: 1px solid rgba(180, 180, 180, 0.3);
-    border-radius: 50%;
-  }
   .userName {
     p {
       font-weight: bold;
@@ -91,4 +85,15 @@ button {
       font-size: 12px;
     }
   }
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 1px solid rgba(180, 180, 180, 0.5);
+  border-radius: 50%;
 }

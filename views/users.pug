@@ -10,8 +10,8 @@ block content
                     p #{userInfo.nickname}
                     span #{userInfo.email}
                     if (locals.isLogin && userInfo.idx === locals.user.idx)
+                        p.fas.fa-sign-out-alt(onclick=`location.href='/logout'`)
                         button(type='button' onclick=`location.href='/users/${userInfo.idx}/edit'`) 프로필 편집
-
             div
         .userContentWrap
             each item in contents
