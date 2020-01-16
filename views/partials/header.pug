@@ -1,7 +1,7 @@
 .header
   .mainWrap
     .headerLeft 
-      a(href='/') 
+      a(href='/')
         i.fab.fa-instagram.logo
         span Instagram
     .hederMain 
@@ -13,8 +13,6 @@
           a(href='/join') JOIN
       else
         li
-          a(href=`/users/${locals.user.idx}`) 
-            <i class="far fa-user headerIcon"></i>
+          a(href=`${routes.CONTENTS_UPLOAD}`).far.fa-edit.headerIcon
         li
-          a(href='/logout') 
-            <i class="fas fa-sign-out-alt headerIcon"></i>
+          a(href='/logout').fas.fa-sign-out-alt.headerIcon

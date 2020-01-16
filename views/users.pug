@@ -1,20 +1,25 @@
 extends layouts/main
-include mixins/userBlock
+include mixins/contentBlock
 
 block content
-    if (locals.isLogin && userInfo.idx === locals.user.idx)
-        input(type='button' value=`${userInfo.nickname}님 정보수정` onclick=`location.href='/users/${userInfo.idx}/edit'`)
-        input(type='button' value='올리기' onclick=`location.href='${routes.CONTENTS_UPLOAD}'`)
-    img(src=userInfo.profile_img)
-    h1 #{userInfo.nickname}
-    h1 #{userInfo.email}
+    .userBox.mainWrap
+        .userInfoBox 
+            .userInfo 
+                .avatar(style=`background-image:url("${userInfo.profile_img}")`)
+                .userName 
+                    p #{userInfo.nickname}
+                    span #{userInfo.email}
+                    if (locals.isLogin && userInfo.idx === locals.user.idx)
+                        button(type='button' onclick=`location.href='/users/${userInfo.idx}/edit'`) 프로필 편집
 
-    div
-        each item in contents
-            +userBlock({
-                idx: item.idx,
-                creator: item.creator,
-                fileUrl: item.fileUrl,
-                value:  item.value,
-                date: item.regdate
-            })
+            div
+        .userContentWrap
+            each item in contents
+                +userContentBlock({
+                    idx: item.idx,
+                    creator: item.creator,
+                    title: item.title,
+                    fileUrl: item.fileUrl,
+                    value:  item.value,
+                    date: item.regdate
+                })

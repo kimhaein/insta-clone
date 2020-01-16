@@ -19,6 +19,7 @@ button {
 
 .mainWrap {
   display: flex;
+  flex-direction: column;
   width: 1000px;
 }
 
@@ -26,6 +27,68 @@ button {
   display: flex;
   box-shadow: 0px 0px 10px 3px rgba(180, 180, 180, 0.3);
   border-radius: 10px;
-  margin-top: 60px;
   background-color: #fff;
+}
+
+.contentsBox {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: 700px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(180, 180, 180, 0.3);
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+  }
+  .contentsHeader {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    border-bottom: 1px solid rgba(180, 180, 180, 0.3);
+  }
+  .contentsBody {
+    flex: 1;
+    padding: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .contentsFooter {
+    height: 100px;
+    border-top: 1px solid rgba(180, 180, 180, 0.3);
+  }
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  .avatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 1px solid rgba(180, 180, 180, 0.3);
+    border-radius: 50%;
+  }
+  .userName {
+    p {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    span {
+      color: #888;
+      font-size: 12px;
+    }
+  }
 }

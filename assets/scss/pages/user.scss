@@ -1,0 +1,30 @@
+.userBox {
+  flex: 1;
+  margin-top: 120px;
+  .userInfoBox {
+    display: flex;
+    justify-content: row;
+    align-items: center;
+    justify-content: center;
+    .userInfo {
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+  .userContentWrap {
+    overflow: hidden;
+    padding: 40px 0;
+    border-top: 1px solid rgba(180, 180, 180, 0.3);
+  }
+  .contentsBox {
+    float: left;
+    width: 320px;
+    height: 350px;
+    margin-bottom: 20px;
+  }
+  .contentsBox:nth-child(3n - 1) {
+    margin: 0 20px;
+  }
+}

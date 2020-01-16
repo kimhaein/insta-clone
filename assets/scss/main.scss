@@ -155,10 +155,10 @@ body {
 
 .main {
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 60px;
   background-color: rgb(250, 250, 250);
 }
 
@@ -177,6 +177,7 @@ input {
   appearance: none;
   box-sizing: border-box;
 }
+
 button {
   padding: 0;
   border: none;

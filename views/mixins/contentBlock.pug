@@ -1,8 +1,11 @@
 mixin contentBlock(content = {})
     .contentsBox
         .contentsHeader
-            .avatar #{`avatar`}
-            span.creator #{content.creator} 
+            .creatorBox
+                .avatar #{`avatar`}
+                span.creator
+            div #{content.title} 
+            .moreBtn.fas.fa-ellipsis-v
         .contentsBody(style=`background-image:url("${content.fileUrl}")`)
         .contentsFooter 
             .iconBox
@@ -10,6 +13,10 @@ mixin contentBlock(content = {})
                 .comment
                 .carousel
             .likeCnt #{`좋아요 0개`}
-            .contents #{content.creator} #{'내용 :'+content.value}
+            .contents #{'내용 :'+content.value}
             div #{'댓글 0개 보기'}
             div #{'댓글달기'}
+
+mixin userContentBlock(content = {})
+    .contentsBox
+        .contentsBody(style=`background-image:url("${content.fileUrl}")`)

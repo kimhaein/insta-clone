@@ -9,8 +9,9 @@ block content
                     idx: item.idx,
                     creator: item.creator,
                     fileUrl: item.fileUrl,
+                    title: item.title,
                     value:  item.value,
-                    date: item.regdate
+                    date: item.regdate,
                 })
         .userInfoBox
             if locals.isLogin
@@ -20,6 +21,6 @@ block content
                         .userName 
                             p #{locals.user.nickname}
                             span #{locals.user.email}
-                    .followerBox 팔로워 리스트
+                .followerBox 팔로워 리스트
             else         
-                a(href='/login') 로그인 하러 가기 ->
+                .followerBox 추천 팔로워 리스트
