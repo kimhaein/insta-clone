@@ -23,7 +23,3 @@
 - Node.js
 - express
 - mariadb
-
-# Project Plan
-
--
