@@ -2,7 +2,7 @@ mixin contentBlock(content = {})
     .contentsBox
         .contentsHeader
             .creatorBox
-                .avatar
+                .avatar(style=`background-image:url("${content.profile_img}")`)
                 span.creator
             div #{content.title} 
             .moreBtn.fas.fa-ellipsis-v
