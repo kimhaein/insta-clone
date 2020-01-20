@@ -6,13 +6,23 @@ block content
         .userInfoBox 
             .userInfo 
                 .avatar(style=`background-image:url("${userInfo.profile_img}")`)
-                .userName 
-                    p #{userInfo.nickname}
-                    span #{userInfo.email}
+                div
+                    .userName 
+                        p #{userInfo.nickname}
+                        span #{userInfo.email}
+                    p.userIntroduction 소개글의 작성해보자
                     if (locals.isLogin && userInfo.idx === locals.user.idx)
-                        p.fas.fa-sign-out-alt(onclick=`location.href='/logout'`)
-                        button(type='button' onclick=`location.href='/users/${userInfo.idx}/edit'`) 프로필 편집
-            div
+                    ul.userBtn  
+                        li.fas.fa-user-edit.icon(onclick=`location.href='/users/${userInfo.idx}/edit'`) 프로필 편집
+                        li.fas.fa-sign-out-alt.icon(onclick=`location.href='/logout'`) 로그아웃
+
+        ul.accountInfo
+            li 게시물 
+                span #{contents.length}
+            li 팔로잉 
+                span -
+            li 팔로워
+                span -
         .userContentWrap
             each item in contents
                 +userContentBlock({

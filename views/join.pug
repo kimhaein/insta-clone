@@ -3,6 +3,7 @@ extends layouts/main
 block content
     .centerBox.joinBox
         h1 회원가입
+        .errorMsg #{joinMessage}
         form(action=routes.JOIN, method='post', enctype="multipart/form-data")
             input(type="file", id="profile_img", name="profile_img", accept="image/*", required=true)
             input(type='text', name='nickname', placeholder='nickname', required=true)
@@ -10,4 +11,3 @@ block content
             input(type='password', name='password', placeholder='Password', required=true)
             input(type='password', name='password2', placeholder='Verify Password', required=true)
             button(type='submit') 회원가입
-    .errorMsg #{joinMessage}
