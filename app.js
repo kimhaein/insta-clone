@@ -4,7 +4,7 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import passport from 'passport'
 import flash from  'connect-flash'
-import cookieParser from 'cookie-Parser'
+import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 
 import { localsMiddleware, passportMiddleware} from "./middlewares";
