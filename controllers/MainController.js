@@ -8,17 +8,42 @@ import routes from '../routes'
  * HOME
  * */
 export const getHome = async (req, res) => {
-    try {
-        const contents = await contentModel.home()
-        // console.log(contents)
+    await contentModel.home()
+    .then(async ([row])=>{
+
+        // 게시글의 Objct 형태로 변환
+        const contentsObj = {}
+        for (const v of row) {
+            contentsObj[v.idx] = v
+            contentsObj[v.idx].reply = []
+        }
+
+        // 해당 게시글들의 댓글 데이터 조합
+        await contentModel.getReply(Object.keys(contentsObj).join(','))
+        .then(([row])=>{
+            for (const v of row) {
+                contentsObj[v.content_id].reply.push(v)
+            }
+        })
+        .catch((e)=>{
+            console.log(e)
+        })
+
+        // 최종 데이터를 배열형태로 전환
+        const contents = []
+        for (const key in contentsObj) {
+            contents.unshift(contentsObj[key])
+        }
+
         res.render("home", {
             pageTitle: "Home", 
             contents,
         })
-    } catch(err) {
-        console.log(err)
-        res.render("home", {pageTitle: "Home", contents: []})
-    }
+
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
 }
 
 /**

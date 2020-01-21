@@ -7,6 +7,7 @@ import { onlyPublic, onlyLogin, uploadAvatar} from "../middlewares";
 const mainRouter = express.Router()
 
 mainRouter.get(routes.HOME, getHome)
+
 // 로그인
 mainRouter.get(routes.LOGIN, onlyPublic, getLogin)
 mainRouter.post(routes.LOGIN, onlyPublic, passport.authenticate('local', {
@@ -14,8 +15,10 @@ mainRouter.post(routes.LOGIN, onlyPublic, passport.authenticate('local', {
   failureRedirect: routes.LOGIN,
   failureFlash: true,
 }));
+
 // 로그아웃
 mainRouter.get(routes.LOGOUT, onlyLogin, getLogout)
+
 // 회원가입
 mainRouter.get(routes.JOIN, onlyPublic, getJoin)
 mainRouter.post(routes.JOIN, onlyPublic, uploadAvatar, postJoin)

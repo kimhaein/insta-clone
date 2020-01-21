@@ -1,0 +1,7 @@
+mixin replyBlock(content = {})
+    ul.replyList
+        li 
+            .avatar(style=`background-image:url("${content.profile_img}")`)
+            span.creator #{content.nickname}
+            p #{content.reply}
+            //- p #{content.regdate}

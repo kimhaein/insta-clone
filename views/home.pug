@@ -8,11 +8,13 @@ block content
                 +contentBlock({
                     idx: item.idx,
                     creator: item.creator,
+                    creator_email: item.creator_email,
                     profile_img: item.profile_img,
                     fileUrl: item.fileUrl,
                     title: item.title,
                     value:  item.value,
                     date: item.regdate,
+                    reply:item.reply,
                 })
         .userInfoBox
             if locals.isLogin

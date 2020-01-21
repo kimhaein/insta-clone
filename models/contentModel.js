@@ -19,9 +19,6 @@ export default {
         return dbConfig.dbConnect
             .promise()
             .query(sql)
-            .then(([rows]) => {
-                return rows
-            })
     },
     insertContent(content_img, creator, email, title, value) {
         const sql = [
@@ -40,5 +37,26 @@ export default {
             .then(([rows]) => {
                 return rows
             })
-    }
+    },
+    insertReply(content_id, user_email, reply) {
+        const sql = [
+            `INSERT INTO reply (content_id, user_email, reply)`,
+            `VALUES ('${content_id}', '${user_email}', '${reply}')`
+            ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+    },
+    getReply(content_id) {
+        const sql = [
+            `SELECT idx, content_id, user_email, reply, regdate,`,
+            `(SELECT profile_img  FROM users WHERE email = user_email) AS profile_img,`,
+            `(SELECT nickname  FROM users WHERE email = user_email) AS nickname `,
+            `FROM reply `,
+            `WHERE content_id IN (${content_id})`,
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+    },
 }

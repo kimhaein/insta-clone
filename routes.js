@@ -23,6 +23,7 @@ export default {
     CONTENTS          : "/contents",
     CONTENTS_UPLOAD    : '/contents/upload',
     UPLOAD            : '/upload',
+    REPLY            : '/reply',
     contentDetail     : id => {
         if (id) {
           return `/contents/${id}`;

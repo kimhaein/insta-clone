@@ -1,3 +1,5 @@
+include ./uiBlock
+
 mixin contentBlock(content = {})
     .contentsBox
         .contentsHeader
@@ -5,17 +7,39 @@ mixin contentBlock(content = {})
                 .avatar(style=`background-image:url("${content.profile_img}")`)
                 span.creator
             div #{content.title} 
-            .moreBtn.fas.fa-ellipsis-v
+            if (locals.isLogin && content.creator_email === locals.user.email)
+                .moreBtn.fas.fa-ellipsis-v
+                    //- ul
+                    //-     li 게시글 삭제
+                    //-     li 게스글 수정
+            else
+                div
         .contentsBody(style=`background-image:url("${content.fileUrl}")`)
         .contentsFooter 
             .iconBox
-                .like
+            .like
                 .comment
                 .carousel
             .likeCnt #{`좋아요 0개`}
-            .contents #{'내용 :'+content.value}
-            div #{'댓글 0개 보기'}
-            div #{'댓글달기'}
+            .contents 
+                span #{content.creator_email}
+                p #{'내용 :'+content.value}
+            div.replyBox 
+                span #{`댓글 ${content.reply.length}개 보기`}
+                each item in content.reply
+                    +replyBlock({
+                        idx: item.idx,
+                        profile_img:item.profile_img,
+                        nickname: item.nickname,
+                        reply: item.reply,
+                        regdate :item.regdate,
+                    })
+            if (locals.isLogin)  
+                form(action='/contents/reply', method='post')
+                    .replyInputBox
+                        input(type='hidden', name='content_id', value=content.idx required=true)
+                        input(type='text', name='reply', placeholder='댓글달기..', required=true)
+                        button(type='submit') 게시
 
 mixin userContentBlock(content = {})
     .contentsBox
