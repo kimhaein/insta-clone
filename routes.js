@@ -24,7 +24,7 @@ export default {
     CONTENTS_UPLOAD    : '/contents/upload',
     UPLOAD            : '/upload',
     REPLY            : '/reply',
-    contentDetail     : id => {
+    CONTENTS_DETAIL : id => {
         if (id) {
           return `/contents/${id}`;
         } else {

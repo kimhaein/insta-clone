@@ -1,0 +1,35 @@
+extends layouts/main
+include mixins/contentBlock
+
+block content
+    .centerBox.contentDetailBox
+        each item in contents
+            +contentBlock({
+                idx: item.idx,
+                creator_idx: item.creator_idx,
+                creator: item.creator,
+                creator_email: item.creator_email,
+                profile_img: item.profile_img,
+                fileUrl: item.fileUrl,
+                title: item.title,
+                value:  item.value,
+                date: item.regdate,
+                reply:item.reply,
+            })
+        div.replyBox 
+            span #{`댓글 ${reply.length}개 보기`}
+            ul.replyList
+                each item in reply
+                    +replyBlock({
+                        idx: item.idx,
+                        profile_img:item.profile_img,
+                        nickname: item.nickname,
+                        reply: item.reply,
+                        regdate :item.regdate,
+                        user_idx:item.user_idx
+                    })
+            if (locals.isLogin)  
+                form(action='/contents/reply', method='post').replyInputBox
+                    input(type='hidden', name='content_id', value=contents[0].idx required=true)
+                    textarea(name='reply', autocomplete='off',autocorrect='off',placeholder='댓글달기..', required=true)
+                    button(type='submit') 게시

@@ -17,32 +17,31 @@ mixin contentBlock(content = {})
         .contentsBody(style=`background-image:url("${content.fileUrl}")`)
         .contentsFooter 
             .iconBox
-                .like.far.fa-heart
-                .comment
-                .carousel
+                span.like.far.fa-heart
+                span.comment.far.fa-comment(onclick=`location.href='/contents/${content.idx}'`)
             .likeCnt #{`좋아요 0개`}
             .contents 
                 span #{content.creator_email}
-                p #{'내용 :'+content.value}
-            div.replyBox 
-                span #{`댓글 ${content.reply.length}개 보기`}
-                ul.replyList
-                    each item in content.reply
-                        +replyBlock({
-                            idx: item.idx,
-                            profile_img:item.profile_img,
-                            nickname: item.nickname,
-                            reply: item.reply,
-                            regdate :item.regdate,
-                            user_idx:item.user_idx
-                        })
-            if (locals.isLogin)  
-                form(action='/contents/reply', method='post')
-                    .replyInputBox
-                        input(type='hidden', name='content_id', value=content.idx required=true)
-                        input(type='text', name='reply', placeholder='댓글달기..', required=true)
-                        button(type='submit') 게시
+                p #{content.value}
+                //- span #{`댓글 ${content.reply.length}개 보기`}
 
 mixin userContentBlock(content = {})
     .contentsBox
         .contentsBody(style=`background-image:url("${content.fileUrl}")`)
+
+mixin contentDetailBlock(content = {})
+    .contentsBox
+        .contentsHeader
+            .creatorBox(onclick=`location.href='/users/${content.creator_idx}'`)
+                .avatar(style=`background-image:url("${content.profile_img}")`)
+                span.creator #{content.creator}
+            div #{content.title} 
+            if (locals.isLogin && content.creator_email === locals.user.email)
+                .moreBtn.fas.fa-ellipsis-v
+                    //- ul
+                    //-     li 게시글 삭제
+                    //-     li 게스글 수정
+            else
+                div
+        .contentsBody(style=`background-image:url("${content.fileUrl}")`)
+

@@ -1,7 +1,41 @@
+import moment from 'moment'
 import contentModel from '../models/contentModel'
 import routes from '../routes'
 
-// 게시글
+moment.locale('ko')
+
+// 게시글 상세
+export const getContent = async (req, res) => {
+    const { id } = req.params
+
+    // 게시글
+    const contents = await contentModel.getContentDetail(id)
+    .then(async([row])=>{
+        return row
+    }).catch((e)=>{
+        console.log(e)
+    })
+
+    // 댓글
+    const reply = await contentModel.getReply(id)
+    .then(([row])=>{
+        return row.map((v,i) => {
+            v.regdate = moment(v.regdate).fromNow()
+            return v
+        })
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+
+    res.render("contentsDetail", {
+        pageTitle: "게시글 상세",
+        contents,
+        reply
+    })
+}
+
+// 게시글 업로드
 export const getUpload = async (req, res) => {
     try {
         res.render("upload", {pageTitle: "Upload"})
@@ -36,11 +70,11 @@ export const postReply = async(req, res) => {
     
     contentModel.insertReply(content_id, email, reply)
         .then((result) => {
-            res.redirect(routes.HOME);
+            res.redirect(routes.CONTENTS_DETAIL(content_id));
         })
         .catch((e) => {
             console.log(e)
-            res.redirect(routes.UPLOAD);
+            res.redirect(routes.HOME);
         })
 }
 

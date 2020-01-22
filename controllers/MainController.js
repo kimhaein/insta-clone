@@ -2,45 +2,19 @@ import crypto from 'crypto'
 import moment from 'moment'
 import contentModel from '../models/contentModel'
 import usersModel from '../models/usersModel'
-import mainModel from '../models/mainModel'
 import routes from '../routes'
 
 moment.locale('ko')
+
 /**
  * HOME
  * */
 export const getHome = async (req, res) => {
 
     // 컨텐츠 가져오기
-    const contents = await contentModel.home()
-    .then(async ([row])=>{
-
-        // 게시글의 Objct 형태로 변환
-        const contentsObj = {}
-        for (const v of row) {
-            contentsObj[v.idx] = v
-            contentsObj[v.idx].reply = []
-        }
-
-        // 해당 게시글들의 댓글 데이터 조합
-        await contentModel.getReply(Object.keys(contentsObj).join(','))
-        .then(([row])=>{
-            for (const v of row) {
-                v.regdate = moment(v.regdate).fromNow()
-                contentsObj[v.content_id].reply.push(v)
-            }
-        })
-        .catch((e)=>{
-            console.log(e)
-        })
-
-        // 최종 데이터를 배열형태로 전환
-        const contents = []
-        for (const key in contentsObj) {
-            contents.unshift(contentsObj[key])
-        }
-
-        return contents
+    const contents = await contentModel.getContentDetail()
+    .then(([row])=>{
+        return row
     })
     .catch((e)=>{
         console.log(e)

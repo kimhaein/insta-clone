@@ -167,7 +167,8 @@ a {
   text-decoration: none;
 }
 
-input {
+input,
+textarea {
   border: none;
   box-shadow: none;
   outline-style: none;
@@ -176,6 +177,7 @@ input {
   -o-appearance: none;
   appearance: none;
   box-sizing: border-box;
+  resize: none;
 }
 
 button {

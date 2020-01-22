@@ -34,7 +34,7 @@ button {
   display: flex;
   flex-direction: column;
   width: 600px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border: 1px solid rgba(180, 180, 180, 0.3);
   border-radius: 10px;
   box-sizing: border-box;
@@ -70,62 +70,15 @@ button {
     background-size: cover;
   }
   .contentsFooter {
-    // height: 100px;
+    padding: 10px 20px;
     border-top: 1px solid rgba(180, 180, 180, 0.3);
-    .replyBox {
-      > span {
-        font-weight: bold;
-      }
-      .replyList {
-        li {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          padding: 10px;
-          border-bottom: 1px solid rgba(180, 180, 180, 0.3);
-          > a {
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-            .avatar {
-              width: 30px;
-              height: 30px;
-            }
-            .creator {
-              font-weight: bold;
-              margin-right: 5px;
-            }
-          }
-          .regdate {
-            color: rgba(180, 180, 180, 1);
-            font-size: 12px;
-          }
-        }
-      }
+    > div {
+      margin-bottom: 5px;
     }
-    .replyInputBox {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
-      border: 1px solid #888;
-      border-radius: 30px;
-      margin: 15px 0;
-      input {
-        flex: 1;
-        height: 20px;
-        margin: 0;
-        border: 0;
-        margin: 4px 5px 6px;
-      }
-      button {
-        width: 70px;
-        height: 30px;
-        margin: 0;
-        border-radius: 30px;
-        background: transparent;
-        color: #000;
+    .iconBox {
+      font-size: 20px;
+      span {
+        padding-right: 10px;
         cursor: pointer;
       }
     }
@@ -154,7 +107,6 @@ button {
   height: 60px;
   margin-right: 10px;
   background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
   border: 1px solid rgba(180, 180, 180, 0.5);
   border-radius: 50%;

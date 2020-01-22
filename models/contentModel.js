@@ -1,24 +1,14 @@
 import dbConfig from './dbConfig'
 
 export default {
-    home() {
-        const sql = `select 
-        idx,
-        fileUrl,
-        creator,
-        creator_email,
-        title,
-        value,
-        regdate,
-        ( select profile_img 
-          from users 
-          where email = creator_email) as profile_img,
-        ( select idx 
-        from users 
-        where email = creator_email) as creator_idx
-       from
-        content 
-       order by idx desc`
+    getContentDetail(id){
+        const sql = [
+            `SELECT idx, fileUrl, creator, creator_email, title, value, regdate,`,
+            `(SELECT profile_img FROM users WHERE email = creator_email) AS profile_img,`,
+            `(SELECT idx FROM users WHERE email = creator_email) AS creator_idx `,
+            `FROM content `,
+            (!id) ?`order by idx desc`:`WHERE idx = ${id}`
+        ].join('')
         return dbConfig.dbConnect
             .promise()
             .query(sql)
@@ -57,7 +47,7 @@ export default {
             `(SELECT nickname FROM users WHERE email = user_email) AS nickname, `,
             `(SELECT idx FROM users WHERE email = user_email) AS user_idx `,
             `FROM reply `,
-            `WHERE content_id IN (${content_id})`,
+            `WHERE content_id = ${content_id}`,
         ].join('')
         return dbConfig.dbConnect
             .promise()
