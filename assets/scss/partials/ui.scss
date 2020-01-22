@@ -75,15 +75,25 @@ button {
           display: flex;
           flex-direction: row;
           align-items: center;
+          justify-content: space-between;
           padding: 10px;
           border-bottom: 1px solid rgba(180, 180, 180, 0.3);
-          .avatar {
-            width: 30px;
-            height: 30px;
+          > div {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            .avatar {
+              width: 30px;
+              height: 30px;
+            }
+            .creator {
+              font-weight: bold;
+              margin-right: 5px;
+            }
           }
-          .creator {
-            font-weight: bold;
-            margin-right: 5px;
+          .regdate {
+            color: rgba(180, 180, 180, 1);
+            font-size: 12px;
           }
         }
       }
@@ -110,6 +120,7 @@ button {
         border-radius: 30px;
         background: transparent;
         color: #000;
+        cursor: pointer;
       }
     }
   }

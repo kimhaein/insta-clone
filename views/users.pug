@@ -13,6 +13,7 @@ block content
                     p.userIntroduction 소개글의 작성해보자
                     if (locals.isLogin && userInfo.idx === locals.user.idx)
                     ul.userBtn  
+                        li.fas.fa-user-plus.icon(onclick=``) 팔로잉
                         li.fas.fa-user-edit.icon(onclick=`location.href='/users/${userInfo.idx}/edit'`) 프로필 편집
                         li.fas.fa-sign-out-alt.icon(onclick=`location.href='/logout'`) 로그아웃
 

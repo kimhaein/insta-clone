@@ -26,14 +26,15 @@ mixin contentBlock(content = {})
                 p #{'내용 :'+content.value}
             div.replyBox 
                 span #{`댓글 ${content.reply.length}개 보기`}
-                each item in content.reply
-                    +replyBlock({
-                        idx: item.idx,
-                        profile_img:item.profile_img,
-                        nickname: item.nickname,
-                        reply: item.reply,
-                        regdate :item.regdate,
-                    })
+                ul.replyList
+                    each item in content.reply
+                        +replyBlock({
+                            idx: item.idx,
+                            profile_img:item.profile_img,
+                            nickname: item.nickname,
+                            reply: item.reply,
+                            regdate :item.regdate,
+                        })
             if (locals.isLogin)  
                 form(action='/contents/reply', method='post')
                     .replyInputBox

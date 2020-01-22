@@ -1,14 +1,18 @@
 import crypto from 'crypto'
+import moment from 'moment'
 import contentModel from '../models/contentModel'
 import usersModel from '../models/usersModel'
 import mainModel from '../models/mainModel'
 import routes from '../routes'
 
+moment.locale('ko')
 /**
  * HOME
  * */
 export const getHome = async (req, res) => {
-    await contentModel.home()
+
+    // 컨텐츠 가져오기
+    const contents = await contentModel.home()
     .then(async ([row])=>{
 
         // 게시글의 Objct 형태로 변환
@@ -22,6 +26,7 @@ export const getHome = async (req, res) => {
         await contentModel.getReply(Object.keys(contentsObj).join(','))
         .then(([row])=>{
             for (const v of row) {
+                v.regdate = moment(v.regdate).fromNow()
                 contentsObj[v.content_id].reply.push(v)
             }
         })
@@ -35,14 +40,29 @@ export const getHome = async (req, res) => {
             contents.unshift(contentsObj[key])
         }
 
-        res.render("home", {
-            pageTitle: "Home", 
-            contents,
-        })
-
+        return contents
     })
     .catch((e)=>{
         console.log(e)
+    })
+
+    // 로그인인 경우 유저정보 가져오기 : 프로필 수정 시 반영을 위해서 추가
+    let user = {}
+    if(req.isAuthenticated()){
+        const id =req.session.passport.user.idx
+        user = await usersModel.selectUser(id)
+        .then(([row])=>{
+            return row[0]
+        }).catch((e)=>{
+            console.log(e)
+            res.render("home", {pageTitle: "Home", contents: []})
+        })
+    }
+
+    res.render("home", {
+        pageTitle: "Home", 
+        contents,
+        user
     })
 }
 
