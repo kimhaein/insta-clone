@@ -1,6 +1,6 @@
 mixin replyBlock(content = {})
         li 
-            div
+            a(href=`/users/${content.user_idx}`) 
                 .avatar(style=`background-image:url("${content.profile_img}")`)
                 span.creator #{content.nickname}
                 p #{content.reply}

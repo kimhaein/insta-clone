@@ -12,7 +12,10 @@ export default {
         regdate,
         ( select profile_img 
           from users 
-          where email = creator_email) as profile_img
+          where email = creator_email) as profile_img,
+        ( select idx 
+        from users 
+        where email = creator_email) as creator_idx
        from
         content 
        order by idx desc`
@@ -51,7 +54,8 @@ export default {
         const sql = [
             `SELECT idx, content_id, user_email, reply, regdate,`,
             `(SELECT profile_img  FROM users WHERE email = user_email) AS profile_img,`,
-            `(SELECT nickname  FROM users WHERE email = user_email) AS nickname `,
+            `(SELECT nickname FROM users WHERE email = user_email) AS nickname, `,
+            `(SELECT idx FROM users WHERE email = user_email) AS user_idx `,
             `FROM reply `,
             `WHERE content_id IN (${content_id})`,
         ].join('')

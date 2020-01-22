@@ -3,9 +3,9 @@ include ./uiBlock
 mixin contentBlock(content = {})
     .contentsBox
         .contentsHeader
-            .creatorBox
+            .creatorBox(onclick=`location.href='/users/${content.creator_idx}'`)
                 .avatar(style=`background-image:url("${content.profile_img}")`)
-                span.creator
+                span.creator #{content.creator}
             div #{content.title} 
             if (locals.isLogin && content.creator_email === locals.user.email)
                 .moreBtn.fas.fa-ellipsis-v
@@ -34,6 +34,7 @@ mixin contentBlock(content = {})
                             nickname: item.nickname,
                             reply: item.reply,
                             regdate :item.regdate,
+                            user_idx:item.user_idx
                         })
             if (locals.isLogin)  
                 form(action='/contents/reply', method='post')

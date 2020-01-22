@@ -51,9 +51,15 @@ button {
     justify-content: space-between;
     height: 60px;
     border-bottom: 1px solid rgba(180, 180, 180, 0.3);
-    .avatar {
-      width: 40px;
-      height: 40px;
+    .creatorBox {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      cursor: pointer;
+      .avatar {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
   .contentsBody {
@@ -78,7 +84,7 @@ button {
           justify-content: space-between;
           padding: 10px;
           border-bottom: 1px solid rgba(180, 180, 180, 0.3);
-          > div {
+          > a {
             display: flex;
             align-items: center;
             flex-direction: row;
