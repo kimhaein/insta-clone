@@ -5,8 +5,9 @@ mixin contentBlock(content = {})
         .contentsHeader
             .creatorBox(onclick=`location.href='/users/${content.creator_idx}'`)
                 .avatar(style=`background-image:url("${content.profile_img}")`)
-                span.creator #{content.creator}
-            div #{content.title} 
+                .creator 
+                    p #{content.creator}
+                    p #{content.creator_email}
             if (locals.isLogin && content.creator_email === locals.user.email)
                 .moreBtn.fas.fa-ellipsis-v
                     //- ul
@@ -18,15 +19,15 @@ mixin contentBlock(content = {})
         .contentsFooter 
             .iconBox
                 span.like.far.fa-heart
-                span.comment.far.fa-comment(onclick=`location.href='/contents/${content.idx}'`)
+                span.comment.far.fa-comment(onclick=`location.href='/contents/detail/${content.idx}'`)
             .likeCnt #{`좋아요 0개`}
             .contents 
-                span #{content.creator_email}
+                p #{content.title} 
                 p #{content.value}
                 //- span #{`댓글 ${content.reply.length}개 보기`}
 
 mixin userContentBlock(content = {})
-    .contentsBox
+    .contentsBox(onclick=`location.href='/contents/detail/${content.idx}'`)
         .contentsBody(style=`background-image:url("${content.fileUrl}")`)
 
 mixin contentDetailBlock(content = {})

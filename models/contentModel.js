@@ -7,7 +7,7 @@ export default {
             `(SELECT profile_img FROM users WHERE email = creator_email) AS profile_img,`,
             `(SELECT idx FROM users WHERE email = creator_email) AS creator_idx `,
             `FROM content `,
-            (!id) ?`order by idx desc`:`WHERE idx = ${id}`
+            (!id) ?`ORDER BY idx DESC`:`WHERE idx = ${id}`
         ].join('')
         return dbConfig.dbConnect
             .promise()
@@ -23,7 +23,11 @@ export default {
             .query(sql)
     },
     getUserContent(email) {
-        const sql = `select * from content where creator_email='${email}' order by idx desc`
+        const sql = [
+            `SELECT idx, fileUrl, creator, creator_email, title, value, regdate `,
+            `FROM content WHERE creator_email='${email}' ORDER BY idx DESC`,
+            ].join('')
+        
         return dbConfig.dbConnect
             .promise()
             .query(sql)

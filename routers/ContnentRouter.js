@@ -6,7 +6,7 @@ import { getContent, getUpload, postUpload ,postReply} from '../controllers/Cont
 const contentRouter = express.Router()
 
 // 게시글 상세
-contentRouter.get('/:id', getContent)
+contentRouter.get('/detail/:id', getContent)
 
 // 게시글 업로드
 contentRouter.get(routes.UPLOAD, onlyLogin, getUpload)
