@@ -1,12 +1,12 @@
 const likeButtons = document.querySelectorAll('.like')
 
 function handleLikeClick(e) {
-    if(e.target.style.backgroundColor === 'red') {
-        e.target.style.backgroundColor = ''
-        console.log('좋아요 취소')
+    if(e.target.classList.contains('fas')) {
+        e.target.classList.remove('fas')
+        e.target.classList.add('far')
     } else {
-        e.target.style.backgroundColor = 'red'
-        console.log('좋아요 누름')
+        e.target.classList.remove('far')
+        e.target.classList.add('fas')
     }
 }
 
