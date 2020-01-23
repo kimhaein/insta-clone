@@ -17,6 +17,8 @@ block content
                             if(userInfo.idx === locals.user.idx)
                                 li.fas.fa-user-edit.icon(onclick=`location.href='/users/${userInfo.idx}/edit'`) 프로필 편집
                                 li.fas.fa-sign-out-alt.icon(onclick=`location.href='/logout'`) 로그아웃
+                        //- input(type='hidden', id='user_email', value=locals.user.email)
+                        //- input(type='hidden', id='user_nicknema', value=locals.user.nickname)
         ul.accountInfo
             li 게시물 
                 span #{contents.length}

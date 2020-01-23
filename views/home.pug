@@ -26,5 +26,7 @@ block content
                             p #{user.nickname}
                             span #{user.email}
                 .followerBox 팔로워 리스트
+                input(type='hidden', id='user_email', value=locals.user.email)
+                input(type='hidden', id='user_nicknema', value=locals.user.nickname)
             else         
                 .followerBox 추천 팔로워 리스트

@@ -28,8 +28,11 @@ block content
                         regdate :item.regdate,
                         user_idx:item.user_idx
                     })
-            if (locals.isLogin)  
+            if (locals.isLogin)
                 form(action='/contents/reply', method='post').replyInputBox
                     input(type='hidden', name='content_id', value=contents[0].idx required=true)
                     textarea(name='reply', autocomplete='off',autocorrect='off',placeholder='댓글달기..', required=true)
                     button(type='submit') 게시
+                
+                input(type='hidden', id='user_email', value=locals.user.email)
+                input(type='hidden', id='user_nicknema', value=locals.user.nickname)
