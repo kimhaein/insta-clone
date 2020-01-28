@@ -36,3 +36,10 @@ block content
                 
                 input(type='hidden', id='user_email', value=locals.user.email)
                 input(type='hidden', id='user_nicknema', value=locals.user.nickname)
+        .modal.hidden
+            .modal__overlay
+            .modal__content
+                h1 좋아요를 남기려면 로그인 하세요.
+                button 로그인
+                button.btn2 가입하기
+                button.btn3 나중에 하기
