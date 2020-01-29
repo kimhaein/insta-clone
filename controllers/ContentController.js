@@ -86,10 +86,24 @@ export const postLike = async(req, res) => {
         .then((result) => {
             // todo ... 
             // likes에 내 메일값 있는지 체크해서 없으면 추가 있으면 제거
-            const value = result[0][0].likes + `${email},`
+            let like_list = result[0][0].likes.split(',')
+            let like = true
+            let value = ''
+            if(like_list.find( v => v === email)) {
+                like = false
+                like_list = like_list.filter( v => v != email)
+                value = like_list.reduce((pre, v) => pre + v + ',')
+            } else {
+                value = result[0][0].likes + `${email},`
+            }
+            
             contentModel.updateLikes(value, content_idx)
             .then((result) => {
-                res.json(value)
+                const obj = {
+                    likes: value,
+                    likeOn: like
+                }
+                res.json(obj)
             })
             .catch((e) => {
                 console.log(e)
