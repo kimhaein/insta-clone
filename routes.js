@@ -24,6 +24,7 @@ export default {
     CONTENTS_UPLOAD    : '/contents/upload',
     UPLOAD            : '/upload',
     REPLY            : '/reply',
+    LIKE             : '/like',
     CONTENTS_DETAIL : id => {
         if (id) {
           return `/contents/${id}`;

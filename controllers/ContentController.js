@@ -78,3 +78,27 @@ export const postReply = async(req, res) => {
         })
 }
 
+// 좋아요
+export const postLike = async(req, res) => {
+    const { content_idx } = req.body
+    const email = res.locals.user.email
+    contentModel.selectLikes(content_idx)
+        .then((result) => {
+            // todo ... 
+            // likes에 내 메일값 있는지 체크해서 없으면 추가 있으면 제거
+            const value = result[0][0].likes + `${email},`
+            contentModel.updateLikes(value, content_idx)
+            .then((result) => {
+                res.json(value)
+            })
+            .catch((e) => {
+                console.log(e)
+                res.redirect(routes.HOME)
+            })
+        })
+        .catch((e) => {
+            console.log(e)
+            res.redirect(routes.HOME)
+        })
+}
+

@@ -1,7 +1,7 @@
 import express from 'express'
 import routes from '../routes'
 import { onlyLogin, uploadContent} from "../middlewares";
-import { getContent, getUpload, postUpload ,postReply} from '../controllers/ContentController'
+import { getContent, getUpload, postUpload ,postReply, postLike} from '../controllers/ContentController'
 
 const contentRouter = express.Router()
 
@@ -14,5 +14,8 @@ contentRouter.post(routes.UPLOAD, onlyLogin, uploadContent, postUpload)
 
 // 댓글
 contentRouter.post(routes.REPLY, onlyLogin, postReply)
+
+// 좋아요
+contentRouter.post(routes.LIKE, onlyLogin, postLike)
 
 export default contentRouter

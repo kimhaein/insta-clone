@@ -20,6 +20,7 @@ mixin contentBlock(content = {})
             .iconBox
                 span.like.far.fa-heart
                 span.comment.far.fa-comment(onclick=`location.href='/contents/detail/${content.idx}'`)
+                input(type='hidden', name='content_id', value=content.idx)
             .likeCnt #{`좋아요 0개`}
             .contents 
                 p #{content.title} 

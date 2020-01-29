@@ -21,6 +21,22 @@ function handleLikeClick(e) {
         } else {
             e.target.classList.remove('far')
             e.target.classList.add('fas')
+            const content_idx = e.target.parentElement.children[2].value
+            const body = {content_idx}
+            fetch('/contents/like', {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers : {
+                    "Content-Type" : "application/json" // 타입 반드시 지정해줘야함.. 
+                }
+            }).then(res => {
+                if(res.status === 200 || res.status === 201) {
+                    res.json().then(json => console.log(json))
+                } else {
+                    console.error(res.statusText)
+                }
+            }).catch(err => console.error(err))
+
             // Todo..
             // 좋아요를 누른 로직 
             // 해당 컨텐츠 likes항목(좋아요를 누른사람 이메일 목록)에서 

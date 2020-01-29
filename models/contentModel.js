@@ -57,4 +57,22 @@ export default {
             .promise()
             .query(sql)
     },
+    selectLikes(content_id) {
+        const sql = [
+            `SELECT likes FROM content WHERE idx = ${content_id}`
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql) 
+    },
+    updateLikes(value, content_id) {
+        const sql = [
+            `UPDATE content `,
+            `SET likes = '${value}'`,
+            `WHERE idx = ${content_id}`
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql) 
+    }
 }
