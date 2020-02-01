@@ -45,7 +45,7 @@ function handleLikeBtn() {
         if(v.value) {
             const arr = v.value.split(',')
             v.parentNode.children[0].textContent = `좋아요 ${arr.length - 1}개`
-            if(myEmail && arr.indexOf(myEmail)) {
+            if(myEmail && arr.indexOf(myEmail.value) > 0) {
                 v.parentNode.parentNode.children[0].children[0].classList.remove('far')
                 v.parentNode.parentNode.children[0].children[0].classList.add('fas')
             }
