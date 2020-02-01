@@ -27,7 +27,7 @@ export default {
     LIKE             : '/like',
     CONTENTS_DETAIL : id => {
         if (id) {
-          return `/contents/${id}`;
+          return `/contents/detail/${id}`;
         } else {
           return ERR;
         }
