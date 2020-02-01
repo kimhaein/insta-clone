@@ -7,7 +7,6 @@ const modal = document.querySelector('.modal')
 function handleLikeClick(e) {
     const content_idx = e.target.parentElement.children[2].value
     const body = {content_idx}
-
     fetchLikeBtn(content_idx, body, e)
 
     if(!myEmail) {
@@ -26,13 +25,12 @@ function fetchLikeBtn(content_idx, body, e) {
     }).then(res => {
         if(res.status === 200 || res.status === 201) {
             res.json().then(json => {
-                if(json.likeOn) {
-                    e.target.classList.remove('far')
-                    e.target.classList.add('fas')
-                } else {
+                if(!json.likeOn) {
                     e.target.classList.remove('fas')
                     e.target.classList.add('far')
                 }
+                e.target.parentNode.parentNode.children[1].children[1].value = json.likes
+                handleLikeBtn()
             })
         } else {
             console.error(res.statusText)
@@ -42,10 +40,19 @@ function fetchLikeBtn(content_idx, body, e) {
 
 // 기존에 좋아요를 눌렀던 게시글 색칠하는 함수
 function handleLikeBtn() {
-    // Todo... 
-    // 로딩된 모든 컨텐츠 또는 디테일페이지 내 단일 컨텐츠에 넘어온
-    // likes 항목 (좋아요를 누른사람 이메일 목록)중 내 이메일이 있다면 해당 컨텐츠 하트 색칠
-    // 그리고 이메일 목록이 몇명인지 계산해 좋아요가 몇개인지 표시
+    // 내가 누른 좋아요 표시
+    document.querySelectorAll('[name=likes]').forEach( v => {
+        if(v.value) {
+            const arr = v.value.split(',')
+            v.parentNode.children[0].textContent = `좋아요 ${arr.length - 1}개`
+            if(myEmail && arr.indexOf(myEmail)) {
+                v.parentNode.parentNode.children[0].children[0].classList.remove('far')
+                v.parentNode.parentNode.children[0].children[0].classList.add('fas')
+            }
+        } else {
+            v.parentNode.children[0].textContent = `좋아요 0개`
+        }
+    })
 }
 
 // modal창 이벤트.
@@ -69,7 +76,7 @@ function init() {
     modal.querySelector('.btn3').addEventListener('click', closeModal)
 
     // myEmail은 로그인한 유저에 경우에만 해당 값을 갖고 있음 isLogin이라고 봐도 무방.
-    if(myEmail) handleLikeBtn()
+    handleLikeBtn()
 }
 
 if(likeButtons.length) {

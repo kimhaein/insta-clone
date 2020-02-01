@@ -21,7 +21,9 @@ mixin contentBlock(content = {})
                 span.like.far.fa-heart
                 span.comment.far.fa-comment(onclick=`location.href='/contents/detail/${content.idx}'`)
                 input(type='hidden', name='content_id', value=content.idx)
-            .likeCnt #{`좋아요 0개`}
+            .likeCnt 
+                span #{`좋아요 0개`}
+                input(name='likes' type='hidden' value=`${content.likes}`)
             .contents 
                 p #{content.title} 
                 p #{content.value}

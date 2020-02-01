@@ -3,7 +3,7 @@ import dbConfig from './dbConfig'
 export default {
     getContentDetail(id){
         const sql = [
-            `SELECT idx, fileUrl, creator, creator_email, title, value, regdate,`,
+            `SELECT idx, fileUrl, creator, creator_email, title, value, regdate, likes, `,
             `(SELECT profile_img FROM users WHERE email = creator_email) AS profile_img,`,
             `(SELECT idx FROM users WHERE email = creator_email) AS creator_idx `,
             `FROM content `,
@@ -15,8 +15,8 @@ export default {
     },
     insertContent(content_img, creator, email, title, value) {
         const sql = [
-        `INSERT INTO content (fileUrl, creator, creator_email, title, value)`,
-        `VALUES ('/${content_img}', '${creator}', '${email}', '${title}', '${value}')`
+        `INSERT INTO content (fileUrl, creator, creator_email, title, value, likes )`,
+        `VALUES ('/${content_img}', '${creator}', '${email}', '${title}', '${value}', '' )`
         ].join('')
         return dbConfig.dbConnect
             .promise()
