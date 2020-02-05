@@ -16,8 +16,8 @@ export default {
             .promise()
             .query(sql)
     },
-    updateUser(filed, userId){
-        const sql = `UPDATE users SET ${filed} WHERE idx = ${userId}`
+    updateUser(field, userId){
+        const sql = `UPDATE users SET ${field} WHERE idx = ${userId}`
         return dbConfig.dbConnect
             .promise()
             .query(sql)

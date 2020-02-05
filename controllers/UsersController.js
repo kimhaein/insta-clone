@@ -18,13 +18,29 @@ export const getUserEdit = async (req, res) => {
 
 export const postUserEdit = async (req, res) => {
     const { id } = req.params
-    const data = req.body
-    
-    const filed = Object.keys(data).map((key)=>{
-        return `${key} = '${data[key]}'`
-    }).join(',')
+    const {
+        body, 
+        file
+    } = req
 
-    usersModel.updateUser(filed,id)
+    const field = Object.keys(body).map((key)=>{
+        return `${key} = '${body[key]}'`
+    })
+
+    if(file){
+        // 윈도우 서버에서 file.path가 "\"로 업로드 되는 문제 해결
+        // "\" 를 "/"로 변환 하는 기능, 추후에 사용하는 곳이 더 발생하면 모듈화 진행 필요
+        if(file && file.path.match(/\\/g) != null){
+            let replaceCount = file.path.match(/\\/g).length;
+            for(let count = 0; replaceCount > count; count++){
+                field.push(`profile_img = '/${file.path.replace('\\', '/')}'`)
+            }
+        }else {
+            field.push(`profile_img = '/${file.path}'`)
+        }
+    }
+
+    usersModel.updateUser(field.join(','),id)
     .then((result)=>{
         res.redirect(routes.USER_DETAIL(id));
     }).catch((e)=>{
