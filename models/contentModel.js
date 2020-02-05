@@ -23,6 +23,12 @@ export default {
             .promise()
             .query(sql)
     },
+    postContentEdit(field, id){
+        const sql = `UPDATE content SET ${field} WHERE idx = ${id}`
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+    },
     getUserContent(email) {
         const sql = [
             `SELECT idx, fileUrl, creator, creator_email, hash_tag, value, regdate `,

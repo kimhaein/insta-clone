@@ -1,0 +1,14 @@
+extends layouts/main
+include mixins/contentBlock
+
+block content
+    .centerBox.joinBox
+        h1 게시글 수정
+        form(action=routes.CONTENTS_EDIT(contents.idx), method='post', enctype="multipart/form-data")
+            label(for="content_img") 이미지
+            input(type="file", id="content_img", name="content_img", accept="image/*")
+            label(for="hash_tag") 해시태그 (','로 구분해주세요)
+            input(type='text', name='hash_tag', placeholder='hash_tag', value=contents.hash_tag, required=true)
+            label(for="value") 소개 글
+            textarea(name='value', rows='5', autocomplete='off',autocorrect='off',placeholder='게시 글..', required=true) #{contents.value}
+            button(type='submit') 수정완료

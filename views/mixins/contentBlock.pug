@@ -10,9 +10,10 @@ mixin contentBlock(content = {})
                     p #{content.creator_email}
             if (locals.isLogin && content.creator_email === locals.user.email)
                 .moreBtn.fas.fa-ellipsis-v
-                    //- ul
-                    //-     li 게시글 삭제
-                    //-     li 게스글 수정
+                    ul
+                        li 삭제
+                        li 
+                            a(href=routes.CONTENTS_EDIT(content.idx)) 수정
             else
                 div
         .contentsBody(style=`background-image:url("${content.fileUrl}")`)
@@ -25,27 +26,11 @@ mixin contentBlock(content = {})
                 span #{`좋아요 0개`}
                 input(name='likes' type='hidden' value=`${content.likes}`)
             .contents 
-                p #{content.title} 
+                .hashList
+                    span #{content.hash_tag}
                 p #{content.value}
                 //- span #{`댓글 ${content.reply.length}개 보기`}
 
 mixin userContentBlock(content = {})
     .contentsBox(onclick=`location.href='/contents/detail/${content.idx}'`)
         .contentsBody(style=`background-image:url("${content.fileUrl}")`)
-
-mixin contentDetailBlock(content = {})
-    .contentsBox
-        .contentsHeader
-            .creatorBox(onclick=`location.href='/users/${content.creator_idx}'`)
-                .avatar(style=`background-image:url("${content.profile_img}")`)
-                span.creator #{content.creator}
-            div #{content.title} 
-            if (locals.isLogin && content.creator_email === locals.user.email)
-                .moreBtn.fas.fa-ellipsis-v
-                    //- ul
-                    //-     li 게시글 삭제
-                    //-     li 게스글 수정
-            else
-                div
-        .contentsBody(style=`background-image:url("${content.fileUrl}")`)
-

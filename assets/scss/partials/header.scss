@@ -10,6 +10,7 @@
   box-sizing: border-box;
   background-color: #ffffff;
   border-bottom: 1px solid rgba(180, 180, 180, 0.4);
+  z-index: 999;
   .mainWrap {
     flex-direction: row;
     align-items: center;

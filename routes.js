@@ -23,7 +23,7 @@ export default {
 
     CONTENTS         : '/contents',
     CONTENTS_UPLOAD  : '/contents/upload',
-    EDIT    : '/:id/edit',
+    EDIT             : '/:id/edit',
     UPLOAD           : '/upload',
     REPLY            : '/reply',
     LIKE             : '/like',
@@ -41,7 +41,7 @@ export default {
           return ERR;
         }
     },
-    deleteContent     : id => {
+    deleteContent    : id => {
         if (id) {
           return `/contents/${id}/delete`;
         } else {

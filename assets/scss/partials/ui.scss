@@ -7,6 +7,20 @@ input {
   font-size: 14px;
 }
 
+label {
+  width: 80%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+textarea {
+  width: 80%;
+  margin: 10px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #000;
+}
+
 button {
   margin-top: 25px;
   width: 80%;
@@ -15,6 +29,11 @@ button {
   background-color: #3897f0;
   color: #fff;
   font-size: 14px;
+  cursor: pointer;
+}
+
+button.redBtn {
+  background-color: red;
 }
 
 .mainWrap {
@@ -49,7 +68,7 @@ button {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 60px;
+    height: 70px;
     border-bottom: 1px solid rgba(180, 180, 180, 0.3);
     .creatorBox {
       display: flex;
@@ -59,6 +78,32 @@ button {
       .avatar {
         width: 40px;
         height: 40px;
+      }
+    }
+    .moreBtn {
+      position: relative;
+      padding: 10px 5px;
+      ul {
+        display: none;
+        position: absolute;
+        top: 20px;
+        right: -50px;
+        background-color: #fff;
+        z-index: 9;
+        box-shadow: 0px 0px 10px 3px rgba(180, 180, 180, 0.3);
+        border-radius: 10px;
+        li {
+          padding: 10px 15px;
+          cursor: pointer;
+        }
+        li:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .moreBtn:hover {
+      ul {
+        display: block;
       }
     }
   }
@@ -82,7 +127,7 @@ button {
         cursor: pointer;
       }
       .like {
-        color : red;
+        color: red;
       }
     }
   }
@@ -133,7 +178,7 @@ button {
     height: 100%;
     position: absolute;
   }
-  
+
   .modal__content {
     background-color: white;
     padding: 50px 100px;
@@ -143,11 +188,7 @@ button {
     width: 300px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
-  
-  button {
-    cursor: pointer;
-  }
-  
+
   .btn2 {
     all: unset;
     color: steelblue;
@@ -155,7 +196,7 @@ button {
     width: 100%;
     margin-top: 15px;
   }
-  
+
   .btn3 {
     all: unset;
     cursor: pointer;

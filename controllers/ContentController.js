@@ -81,16 +81,38 @@ export const getContentEdit = async (req, res) => {
     })
 }
 
-export const postContentEdit = async (req, res) => {
+export const postContentEdit = (req, res) => {
     const { id } = req.params
+    const {
+        body, 
+        file
+    } = req
 
-    // contentModel.postContentEdit(id)
-    // .then(([row])=>{
-    //     return row[0]
-    // }).catch((e)=>{
-    //     console.log(e)
-    //     res.render("home", {pageTitle: "Home", contents: []})
-    // })
+    const field = Object.keys(body).map((key)=>{
+        return `${key} = '${body[key]}'`
+    })
+
+    if(file){
+        // 윈도우 서버에서 file.path가 "\"로 업로드 되는 문제 해결
+        // "\" 를 "/"로 변환 하는 기능, 추후에 사용하는 곳이 더 발생하면 모듈화 진행 필요
+        if(file && file.path.match(/\\/g) != null){
+            let replaceCount = file.path.match(/\\/g).length;
+            for(let count = 0; replaceCount > count; count++){
+                field.push(`fileUrl = '/${file.path.replace('\\', '/')}'`)
+            }
+        }else {
+            field.push(`fileUrl = '/${file.path}'`)
+        }
+    }
+    console.log(field)
+
+    contentModel.postContentEdit(field.join(','),id)
+    .then(()=>{
+        res.redirect(routes.CONTENTS_DETAIL(id));
+    }).catch((e)=>{
+        console.log(e)
+        res.redirect(routes.HOME)
+    })
 }
 // 댓글
 export const postReply = async(req, res) => {
