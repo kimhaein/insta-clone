@@ -13,12 +13,12 @@ export const getHome = async (req, res) => {
 
     // 컨텐츠 가져오기
     const contents = await contentModel.getContentDetail()
-    .then(([row])=>{
-        return row
-    })
-    .catch((e)=>{
-        console.log(e)
-    })
+        .then(([row])=>{
+            return row
+        })
+        .catch((e)=>{
+            console.log(e)
+        })
 
     // 로그인인 경우 유저정보 가져오기 : 프로필 수정 시 반영을 위해서 추가
     let user = {}
@@ -107,7 +107,3 @@ export const getJoin = async(req, res) => {
         console.log(e)
     })
  }
-
- /**
- * 
- * */

@@ -52,7 +52,7 @@ export const postUserEdit = async (req, res) => {
 /**
  * User
  * */
-export const getUser = async (req, res) => {
+export const getUser = (req, res) => {
     const { id } = req.params
     usersModel.selectUser(id)
     .then(([row])=>{
@@ -64,6 +64,20 @@ export const getUser = async (req, res) => {
     }).catch((e)=>{
         console.log(e)
         res.render("users", {pageTitle: "Users", contents: []})
+    })
+}
+
+export const putUserLeave = (req, res) => {
+    const { id } = req.params
+    const field = `is_deleted = "Y"`
+
+    usersModel.updateUser(field,id)
+    .then((result)=>{
+        req.logout()
+        res.redirect("/")
+    }).catch((e)=>{
+        console.log(e)
+        res.render("userEdit", {pageTitle: "userEdit", contents: []})
     })
 }
 

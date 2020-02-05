@@ -47,13 +47,13 @@ export const getUpload = async (req, res) => {
 
 export const postUpload = async(req, res) => {
         const {
-            body: { title, value },
+            body: { hash_tag, value },
             file
         } = req
         const email = res.locals.user.email
         const nickname = res.locals.user.nickname
-        
-        contentModel.insertContent(file.path, nickname, email, title, value)
+         
+        contentModel.insertContent(file.path, nickname, email, hash_tag, value)
             .then((result) => {
                 res.redirect(routes.HOME);
             })
@@ -63,6 +63,35 @@ export const postUpload = async(req, res) => {
             })
 }
 
+// 게시글 수정
+export const getContentEdit = async (req, res) => {
+    const { id } = req.params
+
+    const contents = await contentModel.getContentDetail(id)
+    .then(([row])=>{
+        return row[0]
+    }).catch((e)=>{
+        console.log(e)
+        res.render("home", {pageTitle: "Home", contents: []})
+    })
+
+    res.render("contentsEdit", {
+        pageTitle: "ContentEdit",
+        contents
+    })
+}
+
+export const postContentEdit = async (req, res) => {
+    const { id } = req.params
+
+    // contentModel.postContentEdit(id)
+    // .then(([row])=>{
+    //     return row[0]
+    // }).catch((e)=>{
+    //     console.log(e)
+    //     res.render("home", {pageTitle: "Home", contents: []})
+    // })
+}
 // 댓글
 export const postReply = async(req, res) => {
     const { content_id, reply } = req.body

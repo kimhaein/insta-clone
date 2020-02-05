@@ -17,22 +17,24 @@ export default {
         }
     },
     USER_EDIT   : '/:id/edit',
+    USER_LEAVE  : '/:id/leave',
 
     // contents
 
-    CONTENTS          : "/contents",
-    CONTENTS_UPLOAD    : '/contents/upload',
-    UPLOAD            : '/upload',
+    CONTENTS         : '/contents',
+    CONTENTS_UPLOAD  : '/contents/upload',
+    EDIT    : '/:id/edit',
+    UPLOAD           : '/upload',
     REPLY            : '/reply',
     LIKE             : '/like',
-    CONTENTS_DETAIL : id => {
+    CONTENTS_DETAIL  : id => {
         if (id) {
           return `/contents/detail/${id}`;
         } else {
           return ERR;
         }
     },
-    editContent       : id => {
+    CONTENTS_EDIT    : id => {
         if (id) {
           return `/contents/${id}/edit`;
         } else {

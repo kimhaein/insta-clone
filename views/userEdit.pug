@@ -5,7 +5,13 @@ block content
     .centerBox.joinBox
         h1 프로필 수정
         form(action=`/users/${contents.idx}/edit`, method='post', enctype="multipart/form-data")
+            label(for="profile_img") 프로필 이미지
             input(type="file", id="profile_img", name="profile_img", accept="image/*")
-            input(type='text', name='introduce_text', placeholder='introduce_text', value=contents.introduce_text required=true)
+            label(for="nickname") 닉네임
             input(type='text', name='nickname', placeholder='nickname', value=contents.nickname required=true)
+            label(for="introduce_text") 소개 글
+            textarea(name='introduce_text', rows='3', autocomplete='off',autocorrect='off',placeholder='소개 글..') #{contents.introduce_text}
             button(type='submit') 정보수정
+        form(action=`/users/${contents.idx}/leave`, method='post')
+            input(type="hidden" name="_method" value="put")
+            button.redBtn(type='submit') 탈퇴

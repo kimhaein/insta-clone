@@ -3,9 +3,12 @@ include mixins/contentBlock
 
 block content
     .centerBox.joinBox
-        h1 게시글 업로드
+        h1 게시글 작성
         form(action=routes.CONTENTS_UPLOAD, method='post', enctype="multipart/form-data")
+            label(for="content_img") 이미지
             input(type="file", id="content_img", name="content_img", accept="image/*", required=true)
-            input(type='text', name='title', placeholder='title', required=true)
-            input(type='text', name='value', placeholder='value', required=true)
+            label(for="hash_tag") 해시태그 (','로 구분해주세요)
+            input(type='text', name='hash_tag', placeholder='hash_tag', required=true)
+            label(for="value") 소개 글
+            textarea(name='value', rows='5', autocomplete='off',autocorrect='off',placeholder='게시 글..', required=true)
             button(type='submit') 작성완료
