@@ -6,5 +6,6 @@ block content
         h1 프로필 수정
         form(action=`/users/${contents.idx}/edit`, method='post', enctype="multipart/form-data")
             input(type="file", id="profile_img", name="profile_img", accept="image/*")
+            input(type='text', name='introduce_text', placeholder='introduce_text', value=contents.introduce_text required=true)
             input(type='text', name='nickname', placeholder='nickname', value=contents.nickname required=true)
             button(type='submit') 정보수정

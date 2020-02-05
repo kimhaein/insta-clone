@@ -10,7 +10,7 @@ block content
                     .userName 
                         p #{userInfo.nickname}
                         span #{userInfo.email}
-                    p.userIntroduction 소개글의 작성해보자
+                    p.userIntroduction #{userInfo.introduce_text}
                     if (locals.isLogin)
                         ul.userBtn  
                             li.fas.fa-user-plus.icon(onclick=``) 팔로잉
