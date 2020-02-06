@@ -25,6 +25,7 @@ export default {
     CONTENTS_UPLOAD  : '/contents/upload',
     EDIT             : '/:id/edit',
     UPLOAD           : '/upload',
+    DELETE           : '/:id/delete',
     REPLY            : '/reply',
     LIKE             : '/like',
     CONTENTS_DETAIL  : id => {
@@ -34,14 +35,14 @@ export default {
           return ERR;
         }
     },
-    CONTENTS_EDIT    : id => {
+    CONTENTS_EDIT    : (id ,email) => {
         if (id) {
-          return `/contents/${id}/edit`;
+          return `/contents/${id}/edit?email=${email}`;
         } else {
           return ERR;
         }
     },
-    deleteContent    : id => {
+    CONTENTS_DELETE    : id => {
         if (id) {
           return `/contents/${id}/delete`;
         } else {

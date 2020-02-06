@@ -44,10 +44,11 @@ export const onlyLogin = (req, res, next) => {
 // 로그인한 당사자만 접근 가능
 export const onlyPrivate = (req, res, next) => {
   const { id } = req.params
-  const { passport } = req.session
-  // console.log(req.session.passport.user)
+  const { user } = req.session.passport
 
-  if (req.isAuthenticated() && passport.user.idx === +id) {
+  const email = req.body.email || req.query.email
+
+  if (req.isAuthenticated() && (user.idx === +id || user.email === email)) {
     next();
   } else {
     res.redirect(routes.HOME);

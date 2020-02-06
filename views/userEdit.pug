@@ -13,5 +13,4 @@ block content
             textarea(name='introduce_text', rows='3', autocomplete='off',autocorrect='off',placeholder='소개 글..') #{contents.introduce_text}
             button(type='submit') 정보수정
         form(action=`/users/${contents.idx}/leave`, method='post')
-            input(type="hidden" name="_method" value="put")
             button.redBtn(type='submit') 탈퇴

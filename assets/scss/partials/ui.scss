@@ -79,6 +79,9 @@ button.redBtn {
         width: 40px;
         height: 40px;
       }
+      .creator {
+        line-height: 18px;
+      }
     }
     .moreBtn {
       position: relative;
@@ -129,6 +132,17 @@ button.redBtn {
       .like {
         color: red;
       }
+    }
+    .hashList {
+      margin: 5px 0;
+      span {
+        color: #3897f0;
+        cursor: pointer;
+      }
+    }
+    .contents {
+      margin-bottom: 10px;
+      line-height: 20px;
     }
   }
 }
