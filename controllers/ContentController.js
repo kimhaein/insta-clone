@@ -83,10 +83,8 @@ export const getContentEdit = async (req, res) => {
 
 export const postContentEdit = (req, res) => {
     const { id } = req.params
-    const {
-        body, 
-        file
-    } = req
+    const { body,file } = req
+    // if (req.session.passport.user.email !== body.email) return res.redirect(routes.HOME)
 
     const field = Object.keys(body).map((key)=>{
         return `${key} = '${body[key]}'`
@@ -104,11 +102,26 @@ export const postContentEdit = (req, res) => {
             field.push(`fileUrl = '/${file.path}'`)
         }
     }
-    console.log(field)
 
-    contentModel.postContentEdit(field.join(','),id)
+    contentModel.updateContentEdit(field.join(','),id)
     .then(()=>{
         res.redirect(routes.CONTENTS_DETAIL(id));
+    }).catch((e)=>{
+        console.log(e)
+        res.redirect(routes.HOME)
+    })
+}
+
+// 게시글 삭제
+export const postContentDelete = (req, res) => {
+    const { id } = req.params
+    const { email } = req.body
+    const field = `is_deleted = "Y"`
+    // if (req.session.passport.user.email !== email) return res.redirect(routes.HOME)
+
+    contentModel.updateContentEdit(field,id)
+    .then(()=>{
+        res.redirect("/")
     }).catch((e)=>{
         console.log(e)
         res.redirect(routes.HOME)

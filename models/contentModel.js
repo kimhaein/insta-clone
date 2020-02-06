@@ -23,7 +23,13 @@ export default {
             .promise()
             .query(sql)
     },
-    postContentEdit(field, id){
+    updateContentEdit(field, id){
+        const sql = `UPDATE content SET ${field} WHERE idx = ${id}`
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+    },
+    deleteContent(){
         const sql = `UPDATE content SET ${field} WHERE idx = ${id}`
         return dbConfig.dbConnect
             .promise()

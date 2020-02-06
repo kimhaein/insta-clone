@@ -67,7 +67,7 @@ export const getUser = (req, res) => {
     })
 }
 
-export const putUserLeave = (req, res) => {
+export const postUserLeave = (req, res) => {
     const { id } = req.params
     const field = `is_deleted = "Y"`
 

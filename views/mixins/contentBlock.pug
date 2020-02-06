@@ -9,11 +9,12 @@ mixin contentBlock(content = {})
                     p #{content.creator}
                     p #{content.creator_email}
             if (locals.isLogin && content.creator_email === locals.user.email)
-                .moreBtn.fas.fa-ellipsis-v
-                    ul
-                        li 삭제
-                        li 
-                            a(href=routes.CONTENTS_EDIT(content.idx)) 수정
+                form(action=routes.CONTENTS_DELETE(content.idx), method='post')
+                    .moreBtn.fas.fa-ellipsis-v
+                        ul
+                            li.deleteBtn(data-id=content.idx, data-email=content.creator_email) 삭제
+                            li 
+                                a(href=routes.CONTENTS_EDIT(content.idx,content.creator_email)) 수정
             else
                 div
         .contentsBody(style=`background-image:url("${content.fileUrl}")`)
@@ -25,10 +26,9 @@ mixin contentBlock(content = {})
             .likeCnt 
                 span #{`좋아요 0개`}
                 input(name='likes' type='hidden' value=`${content.likes}`)
-            .contents 
-                .hashList
-                    span #{content.hash_tag}
-                p #{content.value}
+            .hashList
+                span #{content.hash_tag}
+            .contents #{content.value}
                 //- span #{`댓글 ${content.reply.length}개 보기`}
 
 mixin userContentBlock(content = {})

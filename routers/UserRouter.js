@@ -1,6 +1,6 @@
 import express from 'express'
 import routes from '../routes'
-import {getUserEdit, getUser, postUserEdit, putUserLeave} from '../controllers/UsersController'
+import {getUserEdit, getUser, postUserEdit, postUserLeave} from '../controllers/UsersController'
 import { onlyPrivate , uploadAvatar } from "../middlewares";
 
 const userRouter = express.Router()
@@ -13,6 +13,6 @@ userRouter.get(routes.USER_EDIT, onlyPrivate, getUserEdit)
 userRouter.post(routes.USER_EDIT, onlyPrivate, uploadAvatar, postUserEdit)
 
 // 유저 탈퇴
-userRouter.post(routes.USER_LEAVE, onlyPrivate, putUserLeave)
+userRouter.post(routes.USER_LEAVE, onlyPrivate, postUserLeave)
 
 export default userRouter
