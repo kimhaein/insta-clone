@@ -71,9 +71,14 @@ export const getJoin = async(req, res) => {
 
  export const postJoin = async(req, res) => {
     const {
-        body: { nickname, email, password },
+        body: { nickname, email, password , password2 },
         file
     } = req
+
+    if(password !== password2) {
+        req.flash('joinMessage','비밀번호가 일치 하지 않습니다.')
+        res.redirect(routes.JOIN);
+    }
 
     usersModel.selectFindUserByEmail(email)
     .then(([row])=>{
