@@ -55,12 +55,22 @@ export const postUserEdit = async (req, res) => {
 export const getUser = (req, res) => {
     const { id } = req.params
     usersModel.selectUser(id)
-    .then(([row])=>{
-        const userInfo = row[0]
-        const contents = contentModel.getUserContent(userInfo.email)
-            .then((result) => {
-                res.render("users", {pageTitle: "Users", contents: result , userInfo})
-            })
+        .then(([row])=>{
+            const userInfo = row[0]
+            let contents
+            contentModel.getUserContent(userInfo.email)
+                .then((result) => {
+                    const contents = result
+                    contentModel.getUserFollow(userInfo.email)
+                        .then((row2) => {
+                            const followInfo = row2[0].map((v) => v.from)
+                            console.log(followInfo)
+                            contentModel.getUserFollowCount(userInfo.email)
+                                .then((row3) => {
+                                    res.render("users", {pageTitle: "Users", followCnt: row3[0][0], followInfo, contents, userInfo})
+                                })
+                        })
+                })
     }).catch((e)=>{
         console.log(e)
         res.render("users", {pageTitle: "Users", contents: []})

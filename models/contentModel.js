@@ -87,5 +87,24 @@ export default {
         return dbConfig.dbConnect
             .promise()
             .query(sql) 
+    },
+    getUserFollow(email) {
+        const sql = [
+            `SELECT a.from FROM follow as a WHERE a.To = '${email}'`
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql) 
+    },
+    getUserFollowCount(email){
+        const sql = [
+            `SELECT count(a.from) as follower, `,
+            `(select count(a.To) from follow as a where a.from = '${email}') as follow `,
+            `FROM follow as a `,
+            `WHERE a.To = '${email}'`
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql) 
     }
 }
