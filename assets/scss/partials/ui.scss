@@ -133,17 +133,18 @@ button.redBtn {
         color: red;
       }
     }
-    .hashList {
-      margin: 5px 0;
-      span {
+  }
+  .hashList {
+    margin: 5px 0;
+    span {
+      a {
         color: #3897f0;
-        cursor: pointer;
       }
     }
-    .contents {
-      margin-bottom: 10px;
-      line-height: 20px;
-    }
+  }
+  .contents {
+    margin-bottom: 10px;
+    line-height: 20px;
   }
 }
 

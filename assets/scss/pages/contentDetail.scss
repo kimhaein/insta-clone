@@ -1,6 +1,5 @@
 .contentDetailBox {
   justify-content: center;
-  align-items: center;
   margin: 120px 0 70px;
   .contentsBox {
     margin: 0;
@@ -9,7 +8,7 @@
   .replyBox {
     width: 350px;
     border-left: 1px solid rgba(180, 180, 180, 0.3);
-    padding: 10px;
+    padding: 50px 10px;
     > span {
       font-weight: bold;
     }
@@ -17,6 +16,7 @@
       overflow: auto;
       height: 500px;
       max-height: 500px;
+      padding: 10px 0;
       li {
         display: flex;
         flex-direction: row;

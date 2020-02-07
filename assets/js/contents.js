@@ -1,5 +1,6 @@
 const contents = document.querySelectorAll('.moreBtn')
 const deleteBtn = document.querySelectorAll('.deleteBtn')
+const hashList =  document.querySelectorAll('.hashList')
 
 // 컨텐츠 삭제
 function handleDelete(e) {
@@ -19,7 +20,21 @@ function handleDelete(e) {
     }).catch(err => console.error(err))
 }
 
-function init() {
+// 해시 태그
+function handleHash(e) {
+    hashList.forEach( v => {
+        const tagSpan = v.childNodes[0]
+        const tagArr = tagSpan.innerText.split(',')
+
+        const tag = tagArr.map((k)=>{
+            return `<a href="#">#${k}</a>`
+        })
+        
+        tagSpan.innerHTML = tag.join(' ')
+    })
+}
+
+if(contents.length) {
     deleteBtn.forEach(e => e.addEventListener("click", (e)=>{
         const delConfirm = confirm('게시글을 삭제 하시겠습니까?');
         if(delConfirm){
@@ -30,6 +45,7 @@ function init() {
     }))
 }
 
-if(contents.length) {
-    init()
+if(hashList.length){
+    handleHash()
 }
+

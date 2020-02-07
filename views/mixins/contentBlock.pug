@@ -34,3 +34,8 @@ mixin contentBlock(content = {})
 mixin userContentBlock(content = {})
     .contentsBox(onclick=`location.href='/contents/detail/${content.idx}'`)
         .contentsBody(style=`background-image:url("${content.fileUrl}")`)
+            //- span.likeIcon.far.fa-heart
+            //-      input(name='likes' type='hidden' value=`${content.likes}`)
+            .contentsWrap 
+                .hashList
+                    span #{content.hash_tag}
