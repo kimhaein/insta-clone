@@ -11,21 +11,26 @@ block content
                         p #{userInfo.nickname}
                         span #{userInfo.email}
                     p.userIntroduction #{userInfo.introduce_text}
-                    if (locals.isLogin)
                         ul.userBtn  
-                            li.fas.fa-user-plus.icon(onclick=``) 팔로잉
-                            if(userInfo.idx === locals.user.idx)
-                                li.fas.fa-user-edit.icon(onclick=`location.href='/users/${userInfo.idx}/edit'`) 프로필 편집
-                                li.fas.fa-sign-out-alt.icon(onclick=`location.href='/logout'`) 로그아웃
+                            if (locals.isLogin)
+                                if(userInfo.idx === locals.user.idx)
+                                    li.fas.fa-user-edit.icon(onclick=`location.href='/users/${userInfo.idx}/edit'`) 프로필 편집
+                                    li.fas.fa-sign-out-alt.icon(onclick=`location.href='/logout'`) 로그아웃
+                                else
+                                    button.icon.follow 팔로우
+                                input(type='hidden', id='user_email', value=locals.user.email)
+                            else
+                                button.icon.follow 팔로우
+                            input(type='hidden' id='user_following' value=`${followInfo}`)
                         //- input(type='hidden', id='user_email', value=locals.user.email)
                         //- input(type='hidden', id='user_nicknema', value=locals.user.nickname)
         ul.accountInfo
             li 게시물 
                 span #{contents.length}
-            li 팔로잉 
-                span -
-            li 팔로워
-                span -
+            li 팔로워 
+                span #{followCnt.follower}
+            li 팔로우
+                span #{followCnt.follow}
         .userContentWrap
             each item in contents
                 +userContentBlock({
@@ -36,3 +41,10 @@ block content
                     value:  item.value,
                     date: item.regdate
                 })
+        .modal.hidden
+            .modal__overlay
+            .modal__content
+                h1 팔로우하려면 로그인하세요.
+                button 로그인
+                button.btn2 가입하기
+                button.btn3 나중에 하기

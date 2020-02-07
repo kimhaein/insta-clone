@@ -1,6 +1,5 @@
 const likeButtons = document.querySelectorAll('.like')
 const myEmail = document.querySelector('#user_email')
-const myNickname = document.querySelector('#user_nickname')
 const modal = document.querySelector('.modal')
 
 // 좋아요 버튼 클릭 이벤트 발생시 호출되는 함수
@@ -55,25 +54,9 @@ function handleLikeBtn() {
     })
 }
 
-// modal창 이벤트.
-function loginModal() {
-    location.href = '/login'
-}
-function joinModal() {
-    location.href = '/join'
-}
-function closeModal() {
-    modal.classList.add('hidden')
-}
-
 function init() {
     // like 클래스 전부에 클릭이벤트 할당
     likeButtons.forEach(e => e.addEventListener("click", handleLikeClick))
-
-    // modal 창에서 버튼별 클릭 이벤트
-    modal.querySelector('button').addEventListener('click', loginModal)
-    modal.querySelector('.btn2').addEventListener('click', joinModal)
-    modal.querySelector('.btn3').addEventListener('click', closeModal)
 
     // myEmail은 로그인한 유저에 경우에만 해당 값을 갖고 있음 isLogin이라고 봐도 무방.
     handleLikeBtn()
