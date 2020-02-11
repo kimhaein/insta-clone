@@ -20,6 +20,8 @@
 
 ## Server
 
-- Node.js
-- express
-- mariadb
+- React.js
+- Redux
+- TypeScript
+- Sass
+- Canvas
