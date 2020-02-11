@@ -16,12 +16,10 @@
 
 ## Client
 
-- pug
+- Pug
+- Sass
 
 ## Server
 
-- React.js
-- Redux
-- TypeScript
-- Sass
-- Canvas
+- Node.js
+- MySQL
