@@ -5,7 +5,7 @@ block content
     .centerBox.joinBox
         h1 게시글 수정
         form(action=routes.CONTENTS_EDIT(contents.idx), method='post', enctype="multipart/form-data")
-            input(type="hidden" name="email" value=contents.creator_email)
+            input(type="hidden" name="creator_email" value=contents.creator_email)
             label(for="content_img") 이미지
             input(type="file", id="content_img", name="content_img", accept="image/*")
             label(for="hash_tag") 해시태그 (','로 구분해주세요)

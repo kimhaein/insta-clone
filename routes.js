@@ -23,9 +23,9 @@ export default {
 
     CONTENTS         : '/contents',
     CONTENTS_UPLOAD  : '/contents/upload',
-    EDIT             : '/:id/edit',
+    EDIT             : '/:contentsId/edit',
     UPLOAD           : '/upload',
-    DELETE           : '/:id/delete',
+    DELETE           : '/:contentsId/delete',
     REPLY            : '/reply',
     LIKE             : '/like',
     CONTENTS_DETAIL  : id => {

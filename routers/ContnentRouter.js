@@ -5,7 +5,7 @@ import { getContent, getUpload, postUpload ,getContentEdit, postContentEdit, pos
 const contentRouter = express.Router()
 
 // 게시글 상세
-contentRouter.get('/detail/:id', getContent)
+contentRouter.get('/detail/:contentsId', getContent)
 
 // 게시글 업로드
 contentRouter.get(routes.UPLOAD, onlyLogin, getUpload)
@@ -13,7 +13,7 @@ contentRouter.post(routes.UPLOAD, onlyLogin, uploadContent, postUpload)
 
 // 게시글 수정
 contentRouter.get(routes.EDIT, onlyPrivate, getContentEdit)
-contentRouter.post(routes.EDIT, onlyPrivate, uploadContent, postContentEdit)
+contentRouter.post(routes.EDIT, onlyLogin, uploadContent, postContentEdit)
 
 // 게시글 삭제
 contentRouter.post(routes.DELETE, onlyPrivate, postContentDelete)
