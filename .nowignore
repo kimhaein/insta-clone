@@ -1,0 +1,6 @@
+README.md
+yarn.lock
+
+# Environment Variables
+.env
+.env.build
