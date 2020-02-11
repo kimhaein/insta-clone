@@ -1,5 +1,5 @@
-.now
-node_modules
+.nowignore
+now.json
 
 # Environment Variables
 .env

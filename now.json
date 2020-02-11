@@ -2,6 +2,10 @@
   "version": 2,
   "name": "insta-Clone",
   "alias": "insta-Clone",
+  "env": [
+    "REQUIRED_KEY",
+    "REQUIRED_SECRET"
+  ],
   "builds": [
     {
       "src": "package.json",
