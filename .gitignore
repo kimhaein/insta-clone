@@ -1,3 +1,10 @@
+.nowignore
+now.json
+
+# Environment Variables
+.env
+.env.build
+
 # Logs
 logs
 *.log

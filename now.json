@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "name": "insta-Clone",
+  "alias": "insta-Clone",
+  "env": [
+    "REQUIRED_KEY",
+    "REQUIRED_SECRET"
+  ],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" },
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/init.js"
+    }
+  ]
+}
