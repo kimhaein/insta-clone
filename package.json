@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "init.js",
+  "private": true,
   "scripts": {
-    "dev:server": "nodemon --exec babel-node init.js --delay 2  --ignore 'scss'",
-    "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
-    "build:assets": "cross-env WEBPACK_ENV=development webpack",
+    "dev:server": "nodemon --exec babel-node init.js --delay 2 --ignore '.scss' --ignore 'static' ",
+    "dev:assets": "WEBPACK_ENV=development webpack -w ",
+    "build:assets": "WEBPACK_ENV=production webpack",
+    "build:server": "babel ./ --out-dir public --ignore '/assets','/static','webpack.config.js','node_modules/**/*.js'",
+    "copyAll": "cp -R ./static build && cp -R ./views build",
+    "bulid": "npm run build:assets && npm run build:server",
+    "start": "node public/init.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -41,9 +46,10 @@
     "webpack-cli": "^3.3.10"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4",
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
-    "@babel/node": "^7.6.3"
+    "@babel/node": "^7.6.3",
+    "@now/node": "^1.4.1",
+    "nodemon": "^1.19.4"
   }
 }
