@@ -1,9 +1,0 @@
-README.md
-package-lock.json
-
-# Dependency directories
-node_modules/
-
-# Environment Variables
-.env
-.env.build
