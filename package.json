@@ -6,13 +6,15 @@
   "private": true,
   "scripts": {
     "dev:server": "nodemon --exec babel-node init.js --delay 2 --ignore '.scss' --ignore 'static' ",
-    "dev:assets": "WEBPACK_ENV=development webpack -w ",
+    "dev:assets": "WEBPACK_ENV=development webpack -w",
     "build:assets": "WEBPACK_ENV=production webpack",
-    "build:server": "babel ./ --out-dir public --ignore '/assets','/static','webpack.config.js','node_modules/**/*.js'",
+    "build:server": "babel ./ --out-dir build --ignore './assets','./static','webpack.config.js','node_modules/**/*.js'",
     "copyAll": "cp -R ./static build && cp -R ./views build",
-    "bulid": "npm run build:assets && npm run build:server",
-    "start": "node public/init.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build:server && npm run build:assets && npm run copyAll",
+    "prebuild": "rm -rf build",
+    "tunnel": "lt --port 4000",
+    "start": "PRODUCTION=true node build/init.js",
+    "prestart": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -49,7 +51,6 @@
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/node": "^7.6.3",
-    "@now/node": "^1.4.1",
     "nodemon": "^1.19.4"
   }
 }
