@@ -9,7 +9,7 @@ block content
                 div
                     .userName 
                         p #{userInfo.nickname}
-                        span #{userInfo.email}
+                        span#targetEmail #{userInfo.email}
                     p.userIntroduction #{userInfo.introduce_text}
                         ul.userBtn  
                             if (locals.isLogin)

@@ -9,11 +9,31 @@ function handleFollowBtnClick(){
         if(followBtn.textContent === '팔로잉') {
             confirm('취소할래요 ? '? 'yes': 'no')
         } else {
-
+            const targetEmail = document.querySelector('#targetEmail').textContent
+            eventFollowBtn(targetEmail)
         }
     } else {
         modal.classList.remove('hidden')
     }
+}
+
+function eventFollowBtn(target) {
+    body = { target }
+    fetch('/users/follow', {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers : {
+            "Content-Type" : "application/json" // 타입 반드시 지정해줘야함.. 
+        }
+    }).then(res => {
+        if(res.status === 200 || res.status === 201) {
+            res.json().then(json => {
+                console.log(json)
+            })
+        } else {
+            console.error(res.statusText)
+        }
+    }).catch(err => console.error(err))
 }
 
 // 페이지 진입시 버튼 컨트롤

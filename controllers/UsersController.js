@@ -64,7 +64,6 @@ export const getUser = (req, res) => {
                     contentModel.getUserFollow(userInfo.email)
                         .then((row2) => {
                             const followInfo = row2[0].map((v) => v.from)
-                            console.log(followInfo)
                             contentModel.getUserFollowCount(userInfo.email)
                                 .then((row3) => {
                                     res.render("users", {pageTitle: "Users", followCnt: row3[0][0], followInfo, contents, userInfo})
@@ -91,3 +90,15 @@ export const postUserLeave = (req, res) => {
     })
 }
 
+
+export const postUserFollow = async(req, res) => {
+    const { target } = req.body
+    const myEmail = res.locals.user.email
+    usersModel.insertFollow(myEmail, target)
+        .then((result)=> {
+            contentModel.getUserFollowCount(target)
+                .then((row3) => {
+                    res.render({followCnt: row3[0][0]})
+                })
+        })
+}

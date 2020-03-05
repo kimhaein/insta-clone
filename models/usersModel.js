@@ -27,6 +27,14 @@ export default {
         return dbConfig.dbConnect
             .promise()
             .query(sql)
-
+    },
+    insertFollow(myEmail, targetEmail) {
+        const sql = [
+        `INSERT INTO follow (From, To)`,
+        `VALUES ('${myEmail}', '${targetEmail}')`
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
     }
 }
