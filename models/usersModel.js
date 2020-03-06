@@ -30,8 +30,29 @@ export default {
     },
     insertFollow(myEmail, targetEmail) {
         const sql = [
-        `INSERT INTO follow (From, To)`,
+        `INSERT INTO follow (from_follow, To_follow) `,
         `VALUES ('${myEmail}', '${targetEmail}')`
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+    },
+    searchFollow(myEmail, targetEmail) {
+        const sql = [
+            `select count(*) as count `,
+            `from follow `,
+            `where from_follow = '${myEmail}' `,
+            `and to_follow = '${targetEmail}' `
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+    },
+    deleteFollow(myEmail, targetEmail) {
+        const sql = [
+            `DELETE FROM follow `,
+            `WHERE from_follow = '${myEmail}' `,
+            `and to_follow = '${targetEmail}' `
         ].join('')
         return dbConfig.dbConnect
             .promise()
