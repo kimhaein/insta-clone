@@ -90,7 +90,7 @@ export default {
     },
     getUserFollow(email) {
         const sql = [
-            `SELECT a.from FROM follow as a WHERE a.To = '${email}'`
+            `SELECT a.from_follow FROM follow as a WHERE a.to_follow = '${email}'`
         ].join('')
         return dbConfig.dbConnect
             .promise()
@@ -98,10 +98,10 @@ export default {
     },
     getUserFollowCount(email){
         const sql = [
-            `SELECT count(a.from) as follower, `,
-            `(select count(a.To) from follow as a where a.from = '${email}') as follow `,
+            `SELECT count(a.from_follow) as follower, `,
+            `(select count(a.to_follow) from follow as a where a.from_follow = '${email}') as follow `,
             `FROM follow as a `,
-            `WHERE a.To = '${email}'`
+            `WHERE a.to_follow = '${email}'`
         ].join('')
         return dbConfig.dbConnect
             .promise()
