@@ -27,17 +27,17 @@ block content
                         .userName 
                             p #{user.nickname}
                             span #{user.email}
-                .followerBox 팔로워 리스트
                 input(type='hidden', id='user_email', value=locals.user.email)
-            else         
-                .followerBox 추천 팔로우 리스트
-                    each item in bestFollowing
-                        +followingBlock({
-                            idx : item.idx,
-                            nickname : item.nickname,
-                            email : item.email,
-                            profile_img : item.profile_img
-                        })
+
+            .followerBox 추천 팔로우 리스트
+                each item in bestFollowing
+                    +followingBlock({
+                        idx : item.idx,
+                        nickname : item.nickname,
+                        email : item.email,
+                        profile_img : item.profile_img
+                    })         
+                
         .modal.hidden
             .modal__overlay
             .modal__content
