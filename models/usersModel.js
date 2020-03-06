@@ -57,5 +57,18 @@ export default {
         return dbConfig.dbConnect
             .promise()
             .query(sql)
+    },
+    selectBestFollowing() {
+        const sql = [
+            `select to_follow as email, b.idx, b.nickname, b.profile_img, count(*) as count `,
+            `from follow a `,
+            `left join users b `,
+            `on a.to_follow = b.email `,
+            `group by to_follow `,
+            `order by count desc limit 5 `
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
     }
 }

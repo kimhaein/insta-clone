@@ -1,5 +1,6 @@
 extends layouts/main
 include mixins/contentBlock
+include mixins/followingBlock
 
 block content
     .homeBox.mainWrap
@@ -29,7 +30,14 @@ block content
                 .followerBox 팔로워 리스트
                 input(type='hidden', id='user_email', value=locals.user.email)
             else         
-                .followerBox 추천 팔로워 리스트
+                .followerBox 추천 팔로우 리스트
+                    each item in bestFollowing
+                        +followingBlock({
+                            idx : item.idx,
+                            nickname : item.nickname,
+                            email : item.email,
+                            profile_img : item.profile_img
+                        })
         .modal.hidden
             .modal__overlay
             .modal__content

@@ -1,0 +1,8 @@
+mixin followingBlock(bestFollowing = {})
+    .contentsHeader
+            .creatorBox(onclick=`location.href='/users/${bestFollowing.idx}'`)
+                .avatar(style=`background-image:url("${bestFollowing.profile_img}")`)
+                .creator 
+                    p #{bestFollowing.nickname}
+                    p #{bestFollowing.email}
+
