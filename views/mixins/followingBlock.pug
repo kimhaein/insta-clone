@@ -1,9 +1,8 @@
 mixin followingBlock(bestFollowing = {})
-    .contentsHeader
-            .creatorBox(onclick=`location.href='/users/${bestFollowing.idx}'`)
-                .avatar(style=`background-image:url("${bestFollowing.profile_img}")`)
-                .creator 
-                    p #{bestFollowing.nickname}
-                    p #{bestFollowing.email}
-                    p 팔로워 #{bestFollowing.count}명
+  .userInfo(onclick=`location.href='/users/${bestFollowing.idx}'`)
+    .avatar(style=`background-image:url("${bestFollowing.profile_img}")`)
+    .userName 
+      p #{bestFollowing.nickname}
+      span #{bestFollowing.email}
+      span.follower 팔로워 #{bestFollowing.count}명
 

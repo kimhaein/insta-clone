@@ -30,6 +30,9 @@ button {
   color: #fff;
   font-size: 14px;
   cursor: pointer;
+  &.follow {
+    height: 30px;
+  }
 }
 
 button.redBtn {
@@ -161,6 +164,10 @@ button.redBtn {
     span {
       color: #888;
       font-size: 12px;
+    }
+    .follower {
+      display: block;
+      margin-top: 5px;
     }
   }
 }

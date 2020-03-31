@@ -29,7 +29,8 @@ block content
                             span #{user.email}
                 input(type='hidden', id='user_email', value=locals.user.email)
 
-            .followerBox 추천 팔로우 리스트
+            .followerBox 
+                h2 추천 팔로우 리스트
                 each item in bestFollowing
                     +followingBlock({
                         idx : item.idx,
