@@ -27,6 +27,48 @@ export default {
         return dbConfig.dbConnect
             .promise()
             .query(sql)
-
+    },
+    insertFollow(myEmail, targetEmail) {
+        const sql = [
+        `INSERT INTO follow (from_follow, To_follow) `,
+        `VALUES ('${myEmail}', '${targetEmail}')`
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+    },
+    searchFollow(myEmail, targetEmail) {
+        const sql = [
+            `select count(*) as count `,
+            `from follow `,
+            `where from_follow = '${myEmail}' `,
+            `and to_follow = '${targetEmail}' `
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+    },
+    deleteFollow(myEmail, targetEmail) {
+        const sql = [
+            `DELETE FROM follow `,
+            `WHERE from_follow = '${myEmail}' `,
+            `and to_follow = '${targetEmail}' `
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
+    },
+    selectBestFollowing() {
+        const sql = [
+            `select to_follow as email, b.idx, b.nickname, b.profile_img, count(*) as count `,
+            `from follow a `,
+            `left join users b `,
+            `on a.to_follow = b.email `,
+            `group by to_follow `,
+            `order by count desc limit 5 `
+        ].join('')
+        return dbConfig.dbConnect
+            .promise()
+            .query(sql)
     }
 }

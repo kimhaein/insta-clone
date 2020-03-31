@@ -9,7 +9,7 @@ block content
                 div
                     .userName 
                         p #{userInfo.nickname}
-                        span #{userInfo.email}
+                        span#targetEmail #{userInfo.email}
                     p.userIntroduction #{userInfo.introduce_text}
                         ul.userBtn  
                             if (locals.isLogin)
@@ -28,7 +28,7 @@ block content
             li 게시물 
                 span #{contents.length}
             li 팔로워 
-                span #{followCnt.follower}
+                span#followCnt #{followCnt.follower}
             li 팔로우
                 span #{followCnt.follow}
         .userContentWrap

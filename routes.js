@@ -9,6 +9,7 @@ export default {
 
     // users
     USERS       : '/users',
+    FOLLOW : '/follow',
     USER_DETAIL : id => {
         if(id) {
             return `/users/${id}`

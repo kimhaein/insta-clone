@@ -33,10 +33,16 @@ export const getHome = async (req, res) => {
         })
     }
 
+    // 베스트 팔로워 리스트 가져오기 
+    const bestFollowing = await usersModel.selectBestFollowing()
+        .then((result) => {
+            return(result[0])
+        })
     res.render("home", {
         pageTitle: "Home", 
         contents,
-        user
+        user,
+        bestFollowing
     })
 }
 

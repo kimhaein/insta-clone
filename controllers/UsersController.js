@@ -63,10 +63,10 @@ export const getUser = (req, res) => {
                     const contents = result
                     contentModel.getUserFollow(userInfo.email)
                         .then((row2) => {
-                            const followInfo = row2[0].map((v) => v.from)
-                            console.log(followInfo)
+                            const followInfo = row2[0].map((v) => v.from_follow)
                             contentModel.getUserFollowCount(userInfo.email)
                                 .then((row3) => {
+                                    
                                     res.render("users", {pageTitle: "Users", followCnt: row3[0][0], followInfo, contents, userInfo})
                                 })
                         })
@@ -91,3 +91,37 @@ export const postUserLeave = (req, res) => {
     })
 }
 
+
+export const postUserFollow = async(req, res) => {
+    const { target } = req.body
+    const myEmail = res.locals.user.email
+    let count
+    await usersModel.searchFollow(myEmail, target)
+        .then((result) => {
+            count = result[0][0].count
+        })
+    if(count) {
+        usersModel.deleteFollow(myEmail, target)
+            .then((result) => {
+                contentModel.getUserFollowCount(target)
+                    .then((row3) => {
+                        const obj = {
+                            followCnt: row3[0][0],
+                        }
+                        res.json(obj)
+                    })
+            })
+    } else {
+        usersModel.insertFollow(myEmail, target)
+            .then((result)=> {
+                contentModel.getUserFollowCount(target)
+                    .then((row3) => {
+                        const obj = {
+                            followCnt: row3[0][0],
+                        }
+                        res.json(obj)
+                    })
+            })
+    }
+    
+}
